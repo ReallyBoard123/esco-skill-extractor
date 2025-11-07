@@ -1,4 +1,0 @@
-sentence-transformers
-Flask
-pandas
-waitress
