@@ -13,6 +13,13 @@ class TextsInput(BaseModel):
         max_items=100,
         example=["I am a software engineer with Python experience"]
     )
+    threshold: float = Field(
+        None,
+        description="Similarity threshold for matching (0-1). If not provided, uses model default.",
+        ge=0.0,
+        le=1.0,
+        example=0.78
+    )
 
 
 class HealthResponse(BaseModel):

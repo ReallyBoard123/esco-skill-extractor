@@ -19,8 +19,8 @@ def parse_args():
     parser.add_argument(
         "--model", "-m",
         type=str,
-        default="all-MiniLM-L6-v2",
-        help="Model to use for skill extraction. Default is 'all-MiniLM-L6-v2'."
+        default="BAAI/bge-m3",
+        help="Model to use for skill extraction. Default is 'BAAI/bge-m3'."
     )
     parser.add_argument(
         "--skill_threshold", "-s",

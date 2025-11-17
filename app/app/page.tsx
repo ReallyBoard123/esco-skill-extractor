@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Slider } from "@/components/ui/slider";
 
 interface EscoItem {
   id: string;
@@ -19,6 +20,8 @@ export default function Home() {
   const [loading, setLoading] = useState(false);
   const [results, setResults] = useState<AnalysisResults | null>(null);
   const [error, setError] = useState<string>("");
+  const [skillThreshold, setSkillThreshold] = useState([0.63]);
+  const [occupationThreshold, setOccupationThreshold] = useState([0.60]);
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const selectedFile = e.target.files?.[0];
@@ -52,12 +55,18 @@ export default function Home() {
       fetch("http://localhost:8000/extract-skills", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ texts: [text] }),
+        body: JSON.stringify({ 
+          texts: [text],
+          threshold: skillThreshold[0]
+        }),
       }),
       fetch("http://localhost:8000/extract-occupations", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ texts: [text] }),
+        body: JSON.stringify({ 
+          texts: [text],
+          threshold: occupationThreshold[0]
+        }),
       }),
     ]);
 
@@ -125,17 +134,8 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="max-w-6xl mx-auto p-8">
-        <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">
-            ESCO Skill Extractor
-          </h1>
-          <p className="text-gray-600">
-            Upload a PDF to extract ESCO skills and occupations
-          </p>
-        </div>
-
-        <div className="bg-white rounded-lg shadow p-6 mb-8">
-          <div className="flex items-center gap-4">
+         <div className="bg-white rounded-lg shadow p-6 mb-8">
+          <div className="flex items-center gap-4 mb-6">
             <input 
               type="file" 
               accept=".pdf" 
@@ -145,6 +145,36 @@ export default function Home() {
             <Button onClick={handleSubmit} disabled={!file || loading}>
               {loading ? "Analyzing..." : "Extract"}
             </Button>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="space-y-2">
+              <label className="text-sm font-medium text-gray-700">
+                Skill Threshold: {skillThreshold[0].toFixed(2)}
+              </label>
+              <Slider
+                value={skillThreshold}
+                onValueChange={setSkillThreshold}
+                max={1}
+                min={0}
+                step={0.01}
+                className="w-full"
+              />
+            </div>
+            
+            <div className="space-y-2">
+              <label className="text-sm font-medium text-gray-700">
+                Occupation Threshold: {occupationThreshold[0].toFixed(2)}
+              </label>
+              <Slider
+                value={occupationThreshold}
+                onValueChange={setOccupationThreshold}
+                max={1}
+                min={0}
+                step={0.01}
+                className="w-full"
+              />
+            </div>
           </div>
           
           {error && (

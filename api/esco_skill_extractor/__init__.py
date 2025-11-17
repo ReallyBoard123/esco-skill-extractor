@@ -1,9 +1,9 @@
 from itertools import chain
 from typing import Union, List
 import warnings
-import pickle
 import os
 import re
+import hashlib
 
 from sentence_transformers import SentenceTransformer, util
 
@@ -18,8 +18,8 @@ class SkillExtractor:
     def __init__(
         self,
         model: str = "all-MiniLM-L6-v2",
-        skills_threshold: float = 0.6,
-        occupation_threshold: float = 0.55,
+        skills_threshold: float = 0.63,
+        occupation_threshold: float = 0.60,
         device: Union[str, None] = None,
     ):
         """
@@ -40,8 +40,59 @@ class SkillExtractor:
         self._load_models()
         self._load_skills()
         self._load_occupations()
+        self._check_cache_compatibility()
         self._create_skill_embeddings()
         self._create_occupation_embeddings()
+
+    def _get_cache_filename(self, entity_type: str) -> str:
+        """
+        Generate cache filename with model hash for version safety.
+        
+        Args:
+            entity_type: Either 'skill' or 'occupation'
+            
+        Returns:
+            str: Versioned cache filename
+        """
+        model_hash = hashlib.md5(self.model_name.encode()).hexdigest()[:8]
+        return f"{SkillExtractor._dir}/data/{entity_type}_embeddings_{model_hash}.bin"
+
+    def _check_cache_compatibility(self):
+        """
+        Check for legacy cache files and warn about model/cache mismatches.
+        """
+        data_dir = f"{SkillExtractor._dir}/data/"
+        
+        # Check for old unversioned cache files
+        old_skill_cache = f"{data_dir}skill_embeddings.bin"
+        old_occupation_cache = f"{data_dir}occupation_embeddings.bin"
+        
+        if os.path.exists(old_skill_cache) or os.path.exists(old_occupation_cache):
+            print("WARNING: Found legacy cache files without model versioning!")
+            print(f"Model: {self.model_name}")
+            print("Legacy files will be ignored to prevent incompatibility issues.")
+            print("New versioned cache files will be generated automatically.")
+            print()
+        
+        # Check for other model cache files in directory
+        current_hash = hashlib.md5(self.model_name.encode()).hexdigest()[:8]
+        other_models = []
+        
+        for file in os.listdir(data_dir):
+            if file.startswith(("skill_embeddings_", "occupation_embeddings_")) and file.endswith(".bin"):
+                # Extract hash from filename
+                parts = file.split("_")
+                if len(parts) >= 3:
+                    file_hash = parts[2].replace(".bin", "")
+                    if file_hash != current_hash:
+                        # Try to reverse engineer model name (this is informational only)
+                        other_models.append(file_hash)
+        
+        if other_models:
+            unique_hashes = list(set(other_models))
+            print(f"Found cached embeddings for {len(unique_hashes)} other model(s)")
+            print(f"Using cache for current model: {self.model_name} ({current_hash})")
+            print()
 
     def _load_models(self):
         """
@@ -74,48 +125,46 @@ class SkillExtractor:
         This method creates the skill embeddings and saves them to a cache file.
         If the cache file exists, it loads the embeddings from it.
         """
-
-        if os.path.exists(f"{SkillExtractor._dir}/data/skill_embeddings.bin"):
-            with open(f"{SkillExtractor._dir}/data/skill_embeddings.bin", "rb") as f:
-                self._skill_embeddings = pickle.load(f).to(self.device)
+        cache_file = self._get_cache_filename("skill")
+        
+        if os.path.exists(cache_file):
+            # Load embeddings with proper device mapping
+            self._skill_embeddings = torch.load(cache_file, map_location=self.device, weights_only=False)
         else:
-            print(
-                "Skill embeddings file not found. Creating embeddings from scratch..."
-            )
+            print(f"Generating skill embeddings for model: {self.model_name}")
+            print(f"Processing {len(self._skills)} skills...")
             self._skill_embeddings = self._model.encode(
                 self._skills["description"].to_list(),
                 device=self.device,
                 normalize_embeddings=True,
                 convert_to_tensor=True,
+                show_progress_bar=True
             )
-            with open(f"{SkillExtractor._dir}/data/skill_embeddings.bin", "wb") as f:
-                pickle.dump(self._skill_embeddings, f)
+            torch.save(self._skill_embeddings, cache_file)
+            print(f"Skill embeddings saved to: {os.path.basename(cache_file)}")
 
     def _create_occupation_embeddings(self):
         """
         This method creates the occupations embeddings and saves them to a cache file.
         If the cache file exists, it loads the embeddings from it.
         """
-
-        if os.path.exists(f"{SkillExtractor._dir}/data/occupation_embeddings.bin"):
-            with open(
-                f"{SkillExtractor._dir}/data/occupation_embeddings.bin", "rb"
-            ) as f:
-                self._occupation_embeddings = pickle.load(f).to(self.device)
+        cache_file = self._get_cache_filename("occupation")
+        
+        if os.path.exists(cache_file):
+            # Load embeddings with proper device mapping
+            self._occupation_embeddings = torch.load(cache_file, map_location=self.device, weights_only=False)
         else:
-            print(
-                "Occupation embeddings file not found. Creating embeddings from scratch..."
-            )
+            print(f"Generating occupation embeddings for model: {self.model_name}")
+            print(f"Processing {len(self._occupations)} occupations...")
             self._occupation_embeddings = self._model.encode(
                 self._occupations["description"].to_list(),
                 device=self.device,
                 normalize_embeddings=True,
                 convert_to_tensor=True,
+                show_progress_bar=True
             )
-            with open(
-                f"{SkillExtractor._dir}/data/occupation_embeddings.bin", "wb"
-            ) as f:
-                pickle.dump(self._occupation_embeddings, f)
+            torch.save(self._occupation_embeddings, cache_file)
+            print(f"Occupation embeddings saved to: {os.path.basename(cache_file)}")
 
     def _texts_to_tokens(self, texts: List[str]) -> List[List[str]]:
         """
@@ -215,43 +264,73 @@ class SkillExtractor:
         return entity_ids_per_text
 
     @staticmethod
-    def remove_embeddings():
+    def remove_embeddings(model_name: str = None):
         """
         This method removes the skill and occupation embeddings from the disk in case the model changed.
         This is useful to avoid loading the embeddings from the previous model.
+        
+        Args:
+            model_name: If provided, only removes embeddings for this model. Otherwise removes all.
         """
+        data_dir = f"{SkillExtractor._dir}/data/"
+        
+        if model_name:
+            # Remove specific model embeddings
+            model_hash = hashlib.md5(model_name.encode()).hexdigest()[:8]
+            skill_file = f"{data_dir}skill_embeddings_{model_hash}.bin"
+            occupation_file = f"{data_dir}occupation_embeddings_{model_hash}.bin"
+            
+            if os.path.exists(skill_file):
+                os.remove(skill_file)
+                print(f"Removed skill embeddings for {model_name}")
+            if os.path.exists(occupation_file):
+                os.remove(occupation_file)
+                print(f"Removed occupation embeddings for {model_name}")
+        else:
+            # Remove all embedding files (both old and new format)
+            for file in os.listdir(data_dir):
+                if file.startswith(("skill_embeddings", "occupation_embeddings")) and file.endswith(".bin"):
+                    os.remove(os.path.join(data_dir, file))
+                    print(f"Removed {file}")
 
-        if os.path.exists(f"{SkillExtractor._dir}/data/skill_embeddings.bin"):
-            os.remove(f"{SkillExtractor._dir}/data/skill_embeddings.bin")
-        if os.path.exists(f"{SkillExtractor._dir}/data/occupation_embeddings.bin"):
-            os.remove(f"{SkillExtractor._dir}/data/occupation_embeddings.bin")
-
-    def get_skills(self, texts: List[str]) -> List[List[str]]:
+    def get_skills(self, texts: List[str], threshold: float = None) -> List[List[str]]:
         """
         This method extracts the ESCO skills from the texts.
+
+        Args:
+            texts (List[str]): The texts from which skills will be extracted.
+            threshold (float, optional): Custom threshold for this request. If None, uses instance default.
 
         Returns:
             List[List[str]]: A list of lists containing the IDs of the skills for each text.
         """
-
+        
+        actual_threshold = threshold if threshold is not None else self.skills_threshold
+        
         return self._get_entity(
             texts,
             self._skill_ids,
             self._skill_embeddings,
-            self.skills_threshold,
+            actual_threshold,
         )
 
-    def get_occupations(self, texts: List[str]) -> List[List[str]]:
+    def get_occupations(self, texts: List[str], threshold: float = None) -> List[List[str]]:
         """
         This method extracts the ESCO occupations from the texts.
+
+        Args:
+            texts (List[str]): The texts from which occupations will be extracted.
+            threshold (float, optional): Custom threshold for this request. If None, uses instance default.
 
         Returns:
             List[List[str]]: A list of lists containing the IDs of the occupations for each text.
         """
-
+        
+        actual_threshold = threshold if threshold is not None else self.occupation_threshold
+        
         return self._get_entity(
             texts,
             self._occupation_ids,
             self._occupation_embeddings,
-            self.occupation_threshold,
+            actual_threshold,
         )

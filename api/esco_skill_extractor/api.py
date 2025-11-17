@@ -48,7 +48,7 @@ def create_app(extractor, model_name: str) -> FastAPI:
     async def extract_skills(input_data: TextsInput):
         """Extract ESCO skills from input texts"""
         try:
-            skills = extractor.get_skills(input_data.texts)
+            skills = extractor.get_skills(input_data.texts, input_data.threshold)
             return SkillsResponse(skills=skills)
         except Exception as e:
             raise HTTPException(status_code=500, detail=f"Error extracting skills: {str(e)}")
@@ -57,26 +57,10 @@ def create_app(extractor, model_name: str) -> FastAPI:
     async def extract_occupations(input_data: TextsInput):
         """Extract ISCO occupations from input texts"""
         try:
-            occupations = extractor.get_occupations(input_data.texts)
+            occupations = extractor.get_occupations(input_data.texts, input_data.threshold)
             return OccupationsResponse(occupations=occupations)
         except Exception as e:
             raise HTTPException(status_code=500, detail=f"Error extracting occupations: {str(e)}")
 
-    # Legacy endpoints for backward compatibility
-    @app.post("/extract-skills-legacy", tags=["Legacy"])
-    async def extract_skills_legacy(texts: List[str]):
-        """Legacy endpoint that accepts raw array of strings"""
-        try:
-            return extractor.get_skills(texts)
-        except Exception as e:
-            raise HTTPException(status_code=500, detail=f"Error extracting skills: {str(e)}")
-
-    @app.post("/extract-occupations-legacy", tags=["Legacy"])
-    async def extract_occupations_legacy(texts: List[str]):
-        """Legacy endpoint that accepts raw array of strings"""
-        try:
-            return extractor.get_occupations(texts)
-        except Exception as e:
-            raise HTTPException(status_code=500, detail=f"Error extracting occupations: {str(e)}")
 
     return app
