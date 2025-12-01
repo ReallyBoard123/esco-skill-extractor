@@ -1,1 +1,4 @@
-include esco_skill_extractor/data/*.csv
+include data/*.bin
+include data/*.npy
+include requirements.txt
+include README.md

@@ -1,0 +1,62 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.so
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+env/
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+zrok.log
+zrok_url.txt
+backend.pid
+
+# API specific
+api/.venv/
+api/__pycache__/
+api/data/*.bin
+api/data/*.npy
+
+# Node.js (frontend)
+node_modules/
+.next/
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Data files (too large for git)
+ESCO*.csv
+*.bin
+*.npy
+
+# Documentation (managed separately)
+CLAUDE.md
+*.md
+!README.md
+
+# Utility scripts
+create_optimal_schema.py
+transform_schema.py
+test_decode.py
