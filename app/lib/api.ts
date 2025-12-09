@@ -167,8 +167,3 @@ class EscoApiService {
 
 // Export singleton instance
 export const escoApi = new EscoApiService();
-
-export type {
-  HealthCheckResponse,
-  ExtractResults
-};
