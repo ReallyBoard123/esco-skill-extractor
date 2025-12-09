@@ -30,10 +30,13 @@ Thumbs.db
 *.log
 backend.pid
 
-# Data files (embeddings - too large for git)
+# Data files (embeddings - too large for git)  
 data/*.bin
 data/*.npy
 
 # ESCO dataset files (too large for git)
 ESCO*/
 *.csv
+
+# Development files
+.claude/

@@ -7,11 +7,6 @@ import { Slider } from "@/components/ui/slider";
 import { escoApi } from "@/lib/api";
 import type { ExtractResults } from "@/lib/api";
 
-interface EscoItem {
-  id: string;
-  description: string;
-}
-
 type AnalysisResults = ExtractResults;
 
 export default function Home() {
@@ -35,8 +30,10 @@ export default function Home() {
   const extractSkillsFromPDF = async (file: File): Promise<AnalysisResults> => {
     const formData = new FormData();
     formData.append("pdf", file);
-    formData.append("skill_threshold", skillThreshold[0].toString());
-    formData.append("occupation_threshold", occupationThreshold[0].toString());
+    formData.append("skills_threshold", skillThreshold[0].toString());
+    formData.append("occupations_threshold", occupationThreshold[0].toString());
+    formData.append("rich_data", "true");
+    formData.append("max_results", "100");
 
     // Call the Python backend for complete PDF processing
     const baseUrl = escoApi.getBaseUrl();
@@ -56,62 +53,14 @@ export default function Home() {
     const data = await response.json();
     
     console.log('PDF Processing Complete:', {
-      filename: data.source_info.filename,
-      pages: data.source_info.pages,
-      textLength: data.source_info.text_length,
-      skillsFound: data.skills.length,
-      occupationsFound: data.occupations.length,
+      filename: data.metadata?.filename,
+      pages: data.metadata?.pages,
+      textLength: data.metadata?.text_length,
+      skillsFound: data.skills?.length ?? 0,
+      occupationsFound: data.occupations?.length ?? 0,
     });
     
-    return {
-      skills: data.skills,
-      occupations: data.occupations
-    };
-  };
-
-  const analyzeText = async (text: string): Promise<AnalysisResults> => {
-    return await escoApi.extractBoth(text, skillThreshold[0], occupationThreshold[0]);
-  };
-
-  const decodeEscoResults = async (results: AnalysisResults): Promise<AnalysisResults> => {
-    console.log('About to decode ESCO results:', {
-      skillsCount: results.skills.length,
-      occupationsCount: results.occupations.length,
-      skillsSample: results.skills.slice(0, 2),
-      occupationsSample: results.occupations.slice(0, 2)
-    });
-
-    const baseUrl = escoApi.getBaseUrl();
-    const response = await fetch(`${baseUrl}/decode-esco`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "skip_zrok_interstitial": "1",
-      },
-      body: JSON.stringify({
-        skills: results.skills,
-        occupations: results.occupations,
-      }),
-    });
-
-    if (!response.ok) {
-      const errorData = await response.text();
-      console.error('Decode ESCO failed:', response.status, errorData);
-      throw new Error("Failed to decode ESCO data");
-    }
-
-    const decoded = await response.json();
-    console.log('Decoded results:', {
-      skillsDecoded: decoded.skills?.length || 0,
-      occupationsDecoded: decoded.occupations?.length || 0,
-      decodedSkillsSample: decoded.skills?.slice(0, 2),
-      decodedOccupationsSample: decoded.occupations?.slice(0, 2)
-    });
-    
-    return {
-      skills: decoded.skills,
-      occupations: decoded.occupations,
-    };
+    return data;
   };
 
   const handleSubmit = async () => {
@@ -123,10 +72,7 @@ export default function Home() {
 
     try {
       const analysisResults = await extractSkillsFromPDF(file);
-      
-      // Decode ESCO URLs to human-readable names
-      const decodedResults = await decodeEscoResults(analysisResults);
-      setResults(decodedResults);
+      setResults(analysisResults);
     } catch (err) {
       setError(err instanceof Error ? err.message : "An error occurred");
     } finally {
@@ -199,11 +145,11 @@ export default function Home() {
                     <Card 
                       key={index} 
                       className="hover:shadow-md transition-shadow cursor-pointer"
-                      onClick={() => window.open(skill.id, '_blank')}
+                      onClick={() => window.open(skill.uri, '_blank')}
                     >
                       <CardHeader className="pb-2">
                         <CardTitle className="text-base text-blue-800">
-                          {skill.description}
+                          {skill.name}
                         </CardTitle>
                       </CardHeader>
                     </Card>
@@ -224,11 +170,11 @@ export default function Home() {
                     <Card 
                       key={index} 
                       className="hover:shadow-md transition-shadow cursor-pointer"
-                      onClick={() => window.open(occupation.id, '_blank')}
+                      onClick={() => window.open(occupation.uri, '_blank')}
                     >
                       <CardHeader className="pb-2">
                         <CardTitle className="text-base text-green-800">
-                          {occupation.description}
+                          {occupation.name}
                         </CardTitle>
                       </CardHeader>
                     </Card>

@@ -1,42 +1,66 @@
-interface EscoItem {
-  id: string;
-  description: string;
+export interface SkillUsageBreakdown {
+  essential: number;
+  optional: number;
 }
 
-interface SkillExtractionRequest {
-  texts: string[];
-  threshold?: number;
+export interface SkillUsage {
+  count: number;
+  examples: string[];
+  breakdown: SkillUsageBreakdown;
 }
 
-interface OccupationExtractionRequest {
-  texts: string[];
-  threshold?: number;
+export interface RichSkill {
+  name: string;
+  uri: string;
+  type?: string;
+  reuseLevel?: string;
+  description?: string;
+  alternatives?: string[];
+  categories?: string[];
+  usedInOccupations?: SkillUsage;
+  similarity?: number;
 }
 
-interface SkillExtractionResponse {
-  skills: string[][];
-  threshold: number;
-  model: string;
-  timestamp: string;
+export interface OccupationSkillSet {
+  essential: string[];
+  optional: string[];
+  totalEssential: number;
+  totalOptional: number;
 }
 
-interface OccupationExtractionResponse {
-  occupations: string[][];
-  threshold: number;
-  model: string;
-  timestamp: string;
+export interface RichOccupation {
+  name: string;
+  uri: string;
+  iscoGroup?: string;
+  description?: string;
+  alternatives?: string[];
+  requiredSkills?: OccupationSkillSet;
+  skillCategories?: Record<string, number>;
+  similarity?: number;
 }
 
-interface HealthCheckResponse {
+export interface ExtractionMetadata {
+  processedText?: string;
+  totalSkillsFound?: number;
+  totalOccupationsFound?: number;
+  processingTime?: string;
+  thresholds?: {
+    skills?: number;
+    occupations?: number;
+  };
+}
+
+export interface ExtractResults {
+  skills: RichSkill[];
+  occupations: RichOccupation[];
+  metadata?: ExtractionMetadata;
+}
+
+export interface HealthCheckResponse {
   status: string;
   model: string;
-  device: string;
-  timestamp: string;
-}
-
-interface ExtractResults {
-  skills: EscoItem[];
-  occupations: EscoItem[];
+  device?: string;
+  timestamp?: string;
 }
 
 class EscoApiService {
@@ -99,102 +123,44 @@ class EscoApiService {
     }
   }
 
-  async extractSkills(texts: string[], threshold?: number): Promise<SkillExtractionResponse> {
+  async extractRich(
+    text: string,
+    skillThreshold?: number,
+    occupationThreshold?: number,
+    maxResults = 25
+  ): Promise<ExtractResults> {
     try {
-      const payload: SkillExtractionRequest = {
-        texts,
-        ...(threshold !== undefined && { threshold })
+      const payload: Record<string, unknown> = {
+        text,
+        max_results: maxResults,
       };
 
-      const response = await fetch(`${this.baseUrl}/extract-skills`, {
+      if (skillThreshold !== undefined) {
+        payload.skills_threshold = skillThreshold;
+      }
+
+      if (occupationThreshold !== undefined) {
+        payload.occupations_threshold = occupationThreshold;
+      }
+
+      const response = await fetch(`${this.baseUrl}/extract-rich`, {
         method: 'POST',
         headers: this.getHeaders(),
         body: JSON.stringify(payload),
       });
-      
+
       if (!response.ok) {
-        await this.handleApiError(response, 'Skill extraction');
+        await this.handleApiError(response, 'Rich extraction');
       }
-      
+
       return await response.json();
     } catch (error) {
-      throw new Error(`Skill extraction failed: ${error instanceof Error ? error.message : 'Unknown error'}`);
-    }
-  }
-
-  async extractOccupations(texts: string[], threshold?: number): Promise<OccupationExtractionResponse> {
-    try {
-      const payload: OccupationExtractionRequest = {
-        texts,
-        ...(threshold !== undefined && { threshold })
-      };
-
-      const response = await fetch(`${this.baseUrl}/extract-occupations`, {
-        method: 'POST',
-        headers: this.getHeaders(),
-        body: JSON.stringify(payload),
-      });
-      
-      if (!response.ok) {
-        await this.handleApiError(response, 'Occupation extraction');
-      }
-      
-      return await response.json();
-    } catch (error) {
-      throw new Error(`Occupation extraction failed: ${error instanceof Error ? error.message : 'Unknown error'}`);
+      throw new Error(`Rich extraction failed: ${error instanceof Error ? error.message : 'Unknown error'}`);
     }
   }
 
   async extractBoth(text: string, skillThreshold?: number, occupationThreshold?: number): Promise<ExtractResults> {
-    try {
-      const [skillsResponse, occupationsResponse] = await Promise.all([
-        this.extractSkills([text], skillThreshold),
-        this.extractOccupations([text], occupationThreshold),
-      ]);
-
-      const skillUrls = skillsResponse.skills[0] || [];
-      const occupationUrls = occupationsResponse.occupations[0] || [];
-
-      const decodedResults = await this.decodeEscoItems(skillUrls, occupationUrls);
-      
-      return decodedResults;
-    } catch (error) {
-      throw new Error(`Combined extraction failed: ${error instanceof Error ? error.message : 'Unknown error'}`);
-    }
-  }
-
-  private async decodeEscoItems(skillUrls: string[], occupationUrls: string[]): Promise<ExtractResults> {
-    try {
-      const response = await fetch('/api/decode-esco', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          skills: skillUrls,
-          occupations: occupationUrls,
-        }),
-      });
-
-      if (!response.ok) {
-        throw new Error('Failed to decode ESCO data');
-      }
-
-      const decodedData = await response.json();
-      
-      const uniqueSkills = decodedData.skills.filter((skill: EscoItem, index: number, arr: EscoItem[]) => 
-        arr.findIndex(s => s.description.toLowerCase() === skill.description.toLowerCase()) === index
-      );
-      
-      const uniqueOccupations = decodedData.occupations.filter((occupation: EscoItem, index: number, arr: EscoItem[]) => 
-        arr.findIndex(o => o.description.toLowerCase() === occupation.description.toLowerCase()) === index
-      );
-      
-      return {
-        skills: uniqueSkills,
-        occupations: uniqueOccupations,
-      };
-    } catch (error) {
-      throw new Error(`Failed to decode ESCO data: ${error instanceof Error ? error.message : 'Unknown error'}`);
-    }
+    return this.extractRich(text, skillThreshold, occupationThreshold);
   }
 
 }
@@ -203,11 +169,6 @@ class EscoApiService {
 export const escoApi = new EscoApiService();
 
 export type {
-  EscoItem,
-  SkillExtractionRequest,
-  OccupationExtractionRequest,
-  SkillExtractionResponse,
-  OccupationExtractionResponse,
   HealthCheckResponse,
   ExtractResults
 };
