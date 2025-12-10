@@ -56,6 +56,69 @@ export interface ExtractResults {
   metadata?: ExtractionMetadata;
 }
 
+export interface GemmaSkillContext {
+  skill_name: string;
+  proficiency_level?: string;
+  years_experience?: string;
+  context_description?: string;
+  used_in_role?: string;
+  industry_context?: string;
+}
+
+export interface IntelligentSkill extends RichSkill {
+  matched_token?: string;
+  skill_type?: string;
+}
+
+export interface IntelligentOccupation extends RichOccupation {
+  matched_token?: string;
+}
+
+export interface FilterSummary {
+  kept_sentences?: string[];
+  dropped_sentences?: string[];
+  notes?: string;
+}
+
+export interface JobMatch {
+  name: string;
+  match_score: number;
+  matched_skills: string[];
+  missing_essential: string[];
+}
+
+export interface CareerOpportunity {
+  job: JobMatch;
+  skills_to_gain: string[];
+  effort_level: string;
+  category_focus: string[];
+  estimated_time: string;
+}
+
+export interface CareerRoleInsight {
+  role: string;
+  why_it_fits: string;
+  skills_to_highlight?: string[];
+  gaps_to_address?: string[];
+  recommended_actions?: string[];
+}
+
+export interface IntelligentAnalysisResults {
+  skills: IntelligentSkill[];
+  occupations: IntelligentOccupation[];
+  skill_contexts?: GemmaSkillContext[];
+  job_matches?: JobMatch[];
+  career_opportunities?: CareerOpportunity[];
+  analysis_summary?: Record<string, unknown>;
+  skill_gap_analysis?: Record<string, unknown>;
+  insights?: Record<string, unknown>;
+  intelligent_recommendations?: CareerRoleInsight[];
+  filter_summary?: FilterSummary;
+  career_role_insights?: CareerRoleInsight[];
+  cv_sections?: Record<string, unknown>;
+  metadata?: Record<string, unknown>;
+}
+
 export interface HealthCheckResponse {
   status: string;
   model: string;
@@ -123,12 +186,12 @@ class EscoApiService {
     }
   }
 
-  async extractRich(
+  async analyzeTextIntelligent(
     text: string,
     skillThreshold?: number,
     occupationThreshold?: number,
     maxResults = 25
-  ): Promise<ExtractResults> {
+  ): Promise<IntelligentAnalysisResults> {
     try {
       const payload: Record<string, unknown> = {
         text,
@@ -143,24 +206,20 @@ class EscoApiService {
         payload.occupations_threshold = occupationThreshold;
       }
 
-      const response = await fetch(`${this.baseUrl}/extract-rich`, {
+      const response = await fetch(`${this.baseUrl}/analyze-text-intelligent`, {
         method: 'POST',
         headers: this.getHeaders(),
         body: JSON.stringify(payload),
       });
 
       if (!response.ok) {
-        await this.handleApiError(response, 'Rich extraction');
+        await this.handleApiError(response, 'Intelligent text analysis');
       }
 
       return await response.json();
     } catch (error) {
-      throw new Error(`Rich extraction failed: ${error instanceof Error ? error.message : 'Unknown error'}`);
+      throw new Error(`Intelligent text analysis failed: ${error instanceof Error ? error.message : 'Unknown error'}`);
     }
-  }
-
-  async extractBoth(text: string, skillThreshold?: number, occupationThreshold?: number): Promise<ExtractResults> {
-    return this.extractRich(text, skillThreshold, occupationThreshold);
   }
 
 }

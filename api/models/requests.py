@@ -9,7 +9,7 @@ class ExtractRequest(BaseModel):
     text: str = Field(..., description="Text to analyze")
     skills_threshold: Optional[float] = Field(None, ge=0, le=1, description="Similarity threshold for skills")
     occupations_threshold: Optional[float] = Field(None, ge=0, le=1, description="Similarity threshold for occupations")
-    max_results: Optional[int] = Field(10, ge=1, le=50, description="Maximum results to return")
+    max_results: Optional[int] = Field(10, ge=1, le=100, description="Maximum results to return")
 
 
 class SearchRequest(BaseModel):

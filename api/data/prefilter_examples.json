@@ -1,0 +1,1852 @@
+[
+  {
+    "label": "professional",
+    "text": "Recently migrated legacy php services to go microservices reducing latency by 35%.",
+    "reason": "work context"
+  },
+  {
+    "label": "professional",
+    "text": "Certified Scrum Product Owner with 4 years facilitating agile ceremonies.",
+    "reason": "work context"
+  },
+  {
+    "label": "professional",
+    "text": "Recently led a cross-functional engineering team delivering typescript/react features for enterprise clients.",
+    "reason": "work context"
+  },
+  {
+    "label": "personal",
+    "text": "Collect vintage video games and restore old consoles.",
+    "reason": "hobby"
+  },
+  {
+    "label": "professional",
+    "text": "Recently migrated legacy php services to go microservices reducing latency by 35%.",
+    "reason": "work context"
+  },
+  {
+    "label": "personal",
+    "text": "In my spare time, practice yoga and meditation every morning before work.",
+    "reason": "hobby"
+  },
+  {
+    "label": "professional",
+    "text": "Recently mentored junior developers on secure coding practices and code reviews.",
+    "reason": "work context"
+  },
+  {
+    "label": "professional",
+    "text": "Recently completed a master's degree in data science with focus on machine learning.",
+    "reason": "work context"
+  },
+  {
+    "label": "personal",
+    "text": "Collect vintage video games and restore old consoles.",
+    "reason": "hobby"
+  },
+  {
+    "label": "professional",
+    "text": "Recently automated regression test suites using playwright and improved coverage by 40%.",
+    "reason": "work context"
+  },
+  {
+    "label": "professional",
+    "text": "Implemented Django microservices handling fintech transactions and compliance.",
+    "reason": "work context"
+  },
+  {
+    "label": "professional",
+    "text": "Spearheaded a cross-functional engineering team delivering TypeScript/React features for enterprise clients.",
+    "reason": "work context"
+  },
+  {
+    "label": "personal",
+    "text": "Spend spare time cycling across the countryside.",
+    "reason": "hobby"
+  },
+  {
+    "label": "personal",
+    "text": "In my spare time, enjoy volunteering at the animal shelter on Saturdays.",
+    "reason": "hobby"
+  },
+  {
+    "label": "professional",
+    "text": "Designed Figma prototypes and handed off UI specs to developers.",
+    "reason": "work context"
+  },
+  {
+    "label": "professional",
+    "text": "Coordinated teacher training sessions and developed new curriculum for kindergarten students.",
+    "reason": "work context"
+  },
+  {
+    "label": "professional",
+    "text": "Coordinated teacher training sessions and developed new curriculum for kindergarten students.",
+    "reason": "work context"
+  },
+  {
+    "label": "professional",
+    "text": "Designed Figma prototypes and handed off UI specs to developers.",
+    "reason": "work context"
+  },
+  {
+    "label": "personal",
+    "text": "In my spare time, enjoy volunteering at the animal shelter on Saturdays.",
+    "reason": "hobby"
+  },
+  {
+    "label": "professional",
+    "text": "Recently certified scrum product owner with 4 years facilitating agile ceremonies.",
+    "reason": "work context"
+  },
+  {
+    "label": "personal",
+    "text": "Practice yoga and meditation every morning before work.",
+    "reason": "hobby"
+  },
+  {
+    "label": "personal",
+    "text": "Love exploring coffee shops and blogging about espresso tasting notes.",
+    "reason": "hobby"
+  },
+  {
+    "label": "professional",
+    "text": "Recently designed figma prototypes and handed off ui specs to developers.",
+    "reason": "work context"
+  },
+  {
+    "label": "personal",
+    "text": "Write sci-fi short stories and share them online.",
+    "reason": "hobby"
+  },
+  {
+    "label": "professional",
+    "text": "Completed a Master's degree in Data Science with focus on machine learning.",
+    "reason": "work context"
+  },
+  {
+    "label": "personal",
+    "text": "In my spare time, i am passionate about playing guitar in a local band.",
+    "reason": "hobby"
+  },
+  {
+    "label": "professional",
+    "text": "Designed Figma prototypes and handed off UI specs to developers.",
+    "reason": "work context"
+  },
+  {
+    "label": "professional",
+    "text": "Spearheaded a cross-functional engineering team delivering TypeScript/React features for enterprise clients.",
+    "reason": "work context"
+  },
+  {
+    "label": "professional",
+    "text": "Designed Figma prototypes and handed off UI specs to developers.",
+    "reason": "work context"
+  },
+  {
+    "label": "personal",
+    "text": "In my spare time, write sci-fi short stories and share them online.",
+    "reason": "hobby"
+  },
+  {
+    "label": "professional",
+    "text": "Mentored junior developers on secure coding practices and code reviews.",
+    "reason": "work context"
+  },
+  {
+    "label": "professional",
+    "text": "Recently managed aws infrastructure and built ci/cd pipelines using github actions.",
+    "reason": "work context"
+  },
+  {
+    "label": "personal",
+    "text": "Practice yoga and meditation every morning before work.",
+    "reason": "hobby"
+  },
+  {
+    "label": "personal",
+    "text": "Collect vintage video games and restore old consoles.",
+    "reason": "hobby"
+  },
+  {
+    "label": "personal",
+    "text": "Write sci-fi short stories and share them online.",
+    "reason": "hobby"
+  },
+  {
+    "label": "personal",
+    "text": "In my spare time, spend spare time cycling across the countryside.",
+    "reason": "hobby"
+  },
+  {
+    "label": "personal",
+    "text": "Enjoy building LEGO models with my kids in the evenings.",
+    "reason": "hobby"
+  },
+  {
+    "label": "professional",
+    "text": "Migrated legacy PHP services to Go microservices reducing latency by 35%.",
+    "reason": "work context"
+  },
+  {
+    "label": "personal",
+    "text": "Practice yoga and meditation every morning before work.",
+    "reason": "hobby"
+  },
+  {
+    "label": "professional",
+    "text": "Coordinated teacher training sessions and developed new curriculum for kindergarten students.",
+    "reason": "work context"
+  },
+  {
+    "label": "professional",
+    "text": "Designed Figma prototypes and handed off UI specs to developers.",
+    "reason": "work context"
+  },
+  {
+    "label": "personal",
+    "text": "In my spare time, outside work I decompress by hiking and taking landscape photographs.",
+    "reason": "hobby"
+  },
+  {
+    "label": "professional",
+    "text": "Recently coordinated teacher training sessions and developed new curriculum for kindergarten students.",
+    "reason": "work context"
+  },
+  {
+    "label": "professional",
+    "text": "Recently coordinated teacher training sessions and developed new curriculum for kindergarten students.",
+    "reason": "work context"
+  },
+  {
+    "label": "professional",
+    "text": "Automated regression test suites using Playwright and improved coverage by 40%.",
+    "reason": "work context"
+  },
+  {
+    "label": "personal",
+    "text": "In my spare time, spend spare time cycling across the countryside.",
+    "reason": "hobby"
+  },
+  {
+    "label": "professional",
+    "text": "Certified Scrum Product Owner with 4 years facilitating agile ceremonies.",
+    "reason": "work context"
+  },
+  {
+    "label": "personal",
+    "text": "In my spare time, enjoy volunteering at the animal shelter on Saturdays.",
+    "reason": "hobby"
+  },
+  {
+    "label": "personal",
+    "text": "In my spare time, i like cooking Thai food and experimenting with new recipes on weekends.",
+    "reason": "hobby"
+  },
+  {
+    "label": "professional",
+    "text": "Mentored junior developers on secure coding practices and code reviews.",
+    "reason": "work context"
+  },
+  {
+    "label": "professional",
+    "text": "Mentored junior developers on secure coding practices and code reviews.",
+    "reason": "work context"
+  },
+  {
+    "label": "professional",
+    "text": "Recently implemented django microservices handling fintech transactions and compliance.",
+    "reason": "work context"
+  },
+  {
+    "label": "professional",
+    "text": "Implemented Django microservices handling fintech transactions and compliance.",
+    "reason": "work context"
+  },
+  {
+    "label": "personal",
+    "text": "I like cooking Thai food and experimenting with new recipes on weekends.",
+    "reason": "hobby"
+  },
+  {
+    "label": "professional",
+    "text": "Oversaw AWS infrastructure and built CI/CD pipelines using GitHub Actions.",
+    "reason": "work context"
+  },
+  {
+    "label": "professional",
+    "text": "Oversaw \u20ac5M fundraising portfolio and prepared grant applications.",
+    "reason": "work context"
+  },
+  {
+    "label": "personal",
+    "text": "Outside work I decompress by hiking and taking landscape photographs.",
+    "reason": "hobby"
+  },
+  {
+    "label": "professional",
+    "text": "Led a cross-functional engineering team delivering TypeScript/React features for enterprise clients.",
+    "reason": "work context"
+  },
+  {
+    "label": "professional",
+    "text": "Coordinated teacher training sessions and developed new curriculum for kindergarten students.",
+    "reason": "work context"
+  },
+  {
+    "label": "personal",
+    "text": "In my spare time, compete in local 10K races and track my personal bests.",
+    "reason": "hobby"
+  },
+  {
+    "label": "professional",
+    "text": "Designed Figma prototypes and handed off UI specs to developers.",
+    "reason": "work context"
+  },
+  {
+    "label": "professional",
+    "text": "Implemented Django microservices handling fintech transactions and compliance.",
+    "reason": "work context"
+  },
+  {
+    "label": "professional",
+    "text": "Spearheaded a cross-functional engineering team delivering TypeScript/React features for enterprise clients.",
+    "reason": "work context"
+  },
+  {
+    "label": "personal",
+    "text": "In my spare time, enjoy building LEGO models with my kids in the evenings.",
+    "reason": "hobby"
+  },
+  {
+    "label": "personal",
+    "text": "In my spare time, outside work I decompress by hiking and taking landscape photographs.",
+    "reason": "hobby"
+  },
+  {
+    "label": "professional",
+    "text": "Conducted user research interviews and synthesized findings into actionable design recommendations.",
+    "reason": "work context"
+  },
+  {
+    "label": "personal",
+    "text": "In my spare time, enjoy mentoring students informally at community events.",
+    "reason": "hobby"
+  },
+  {
+    "label": "personal",
+    "text": "In my spare time, love exploring coffee shops and blogging about espresso tasting notes.",
+    "reason": "hobby"
+  },
+  {
+    "label": "professional",
+    "text": "Completed a Master's degree in Data Science with focus on machine learning.",
+    "reason": "work context"
+  },
+  {
+    "label": "personal",
+    "text": "Spend spare time cycling across the countryside.",
+    "reason": "hobby"
+  },
+  {
+    "label": "professional",
+    "text": "Managed AWS infrastructure and built CI/CD pipelines using GitHub Actions.",
+    "reason": "work context"
+  },
+  {
+    "label": "personal",
+    "text": "Love exploring coffee shops and blogging about espresso tasting notes.",
+    "reason": "hobby"
+  },
+  {
+    "label": "professional",
+    "text": "Conducted user research interviews and synthesized findings into actionable design recommendations.",
+    "reason": "work context"
+  },
+  {
+    "label": "personal",
+    "text": "In my spare time, compete in local 10K races and track my personal bests.",
+    "reason": "hobby"
+  },
+  {
+    "label": "personal",
+    "text": "Outside work I decompress by hiking and taking landscape photographs.",
+    "reason": "hobby"
+  },
+  {
+    "label": "professional",
+    "text": "Completed a Master's degree in Data Science with focus on machine learning.",
+    "reason": "work context"
+  },
+  {
+    "label": "personal",
+    "text": "In my spare time, love exploring coffee shops and blogging about espresso tasting notes.",
+    "reason": "hobby"
+  },
+  {
+    "label": "professional",
+    "text": "Automated regression test suites using Playwright and improved coverage by 40%.",
+    "reason": "work context"
+  },
+  {
+    "label": "professional",
+    "text": "Implemented Django microservices handling fintech transactions and compliance.",
+    "reason": "work context"
+  },
+  {
+    "label": "personal",
+    "text": "In my spare time, i am passionate about playing guitar in a local band.",
+    "reason": "hobby"
+  },
+  {
+    "label": "personal",
+    "text": "In my spare time, outside work I decompress by hiking and taking landscape photographs.",
+    "reason": "hobby"
+  },
+  {
+    "label": "personal",
+    "text": "In my spare time, i am passionate about playing guitar in a local band.",
+    "reason": "hobby"
+  },
+  {
+    "label": "professional",
+    "text": "Recently managed \u20ac5m fundraising portfolio and prepared grant applications.",
+    "reason": "work context"
+  },
+  {
+    "label": "professional",
+    "text": "Recently managed \u20ac5m fundraising portfolio and prepared grant applications.",
+    "reason": "work context"
+  },
+  {
+    "label": "professional",
+    "text": "Designed Figma prototypes and handed off UI specs to developers.",
+    "reason": "work context"
+  },
+  {
+    "label": "personal",
+    "text": "In my spare time, enjoy mentoring students informally at community events.",
+    "reason": "hobby"
+  },
+  {
+    "label": "personal",
+    "text": "In my spare time, write sci-fi short stories and share them online.",
+    "reason": "hobby"
+  },
+  {
+    "label": "professional",
+    "text": "Conducted user research interviews and synthesized findings into actionable design recommendations.",
+    "reason": "work context"
+  },
+  {
+    "label": "personal",
+    "text": "Compete in local 10K races and track my personal bests.",
+    "reason": "hobby"
+  },
+  {
+    "label": "professional",
+    "text": "Mentored junior developers on secure coding practices and code reviews.",
+    "reason": "work context"
+  },
+  {
+    "label": "professional",
+    "text": "Recently automated regression test suites using playwright and improved coverage by 40%.",
+    "reason": "work context"
+  },
+  {
+    "label": "personal",
+    "text": "Enjoy building LEGO models with my kids in the evenings.",
+    "reason": "hobby"
+  },
+  {
+    "label": "professional",
+    "text": "Recently automated regression test suites using playwright and improved coverage by 40%.",
+    "reason": "work context"
+  },
+  {
+    "label": "professional",
+    "text": "Migrated legacy PHP services to Go microservices reducing latency by 35%.",
+    "reason": "work context"
+  },
+  {
+    "label": "professional",
+    "text": "Implemented Django microservices handling fintech transactions and compliance.",
+    "reason": "work context"
+  },
+  {
+    "label": "professional",
+    "text": "Automated regression test suites using Playwright and improved coverage by 40%.",
+    "reason": "work context"
+  },
+  {
+    "label": "personal",
+    "text": "In my spare time, enjoy volunteering at the animal shelter on Saturdays.",
+    "reason": "hobby"
+  },
+  {
+    "label": "personal",
+    "text": "In my spare time, spend spare time cycling across the countryside.",
+    "reason": "hobby"
+  },
+  {
+    "label": "personal",
+    "text": "In my spare time, enjoy volunteering at the animal shelter on Saturdays.",
+    "reason": "hobby"
+  },
+  {
+    "label": "professional",
+    "text": "Certified Scrum Product Owner with 4 years facilitating agile ceremonies.",
+    "reason": "work context"
+  },
+  {
+    "label": "professional",
+    "text": "Oversaw AWS infrastructure and built CI/CD pipelines using GitHub Actions.",
+    "reason": "work context"
+  },
+  {
+    "label": "professional",
+    "text": "Migrated legacy PHP services to Go microservices reducing latency by 35%.",
+    "reason": "work context"
+  },
+  {
+    "label": "personal",
+    "text": "In my spare time, enjoy mentoring students informally at community events.",
+    "reason": "hobby"
+  },
+  {
+    "label": "professional",
+    "text": "Automated regression test suites using Playwright and improved coverage by 40%.",
+    "reason": "work context"
+  },
+  {
+    "label": "professional",
+    "text": "Oversaw AWS infrastructure and built CI/CD pipelines using GitHub Actions.",
+    "reason": "work context"
+  },
+  {
+    "label": "professional",
+    "text": "Recently certified scrum product owner with 4 years facilitating agile ceremonies.",
+    "reason": "work context"
+  },
+  {
+    "label": "personal",
+    "text": "Spend spare time cycling across the countryside.",
+    "reason": "hobby"
+  },
+  {
+    "label": "professional",
+    "text": "Certified Scrum Product Owner with 4 years facilitating agile ceremonies.",
+    "reason": "work context"
+  },
+  {
+    "label": "professional",
+    "text": "Recently implemented django microservices handling fintech transactions and compliance.",
+    "reason": "work context"
+  },
+  {
+    "label": "personal",
+    "text": "Write sci-fi short stories and share them online.",
+    "reason": "hobby"
+  },
+  {
+    "label": "personal",
+    "text": "I like cooking Thai food and experimenting with new recipes on weekends.",
+    "reason": "hobby"
+  },
+  {
+    "label": "personal",
+    "text": "In my spare time, enjoy mentoring students informally at community events.",
+    "reason": "hobby"
+  },
+  {
+    "label": "personal",
+    "text": "In my spare time, practice yoga and meditation every morning before work.",
+    "reason": "hobby"
+  },
+  {
+    "label": "professional",
+    "text": "Automated regression test suites using Playwright and improved coverage by 40%.",
+    "reason": "work context"
+  },
+  {
+    "label": "personal",
+    "text": "In my spare time, collect vintage video games and restore old consoles.",
+    "reason": "hobby"
+  },
+  {
+    "label": "professional",
+    "text": "Spearheaded a cross-functional engineering team delivering TypeScript/React features for enterprise clients.",
+    "reason": "work context"
+  },
+  {
+    "label": "personal",
+    "text": "Outside work I decompress by hiking and taking landscape photographs.",
+    "reason": "hobby"
+  },
+  {
+    "label": "professional",
+    "text": "Recently mentored junior developers on secure coding practices and code reviews.",
+    "reason": "work context"
+  },
+  {
+    "label": "professional",
+    "text": "Recently implemented django microservices handling fintech transactions and compliance.",
+    "reason": "work context"
+  },
+  {
+    "label": "personal",
+    "text": "In my spare time, compete in local 10K races and track my personal bests.",
+    "reason": "hobby"
+  },
+  {
+    "label": "personal",
+    "text": "In my spare time, collect vintage video games and restore old consoles.",
+    "reason": "hobby"
+  },
+  {
+    "label": "personal",
+    "text": "Write sci-fi short stories and share them online.",
+    "reason": "hobby"
+  },
+  {
+    "label": "personal",
+    "text": "In my spare time, outside work I decompress by hiking and taking landscape photographs.",
+    "reason": "hobby"
+  },
+  {
+    "label": "professional",
+    "text": "Automated regression test suites using Playwright and improved coverage by 40%.",
+    "reason": "work context"
+  },
+  {
+    "label": "personal",
+    "text": "In my spare time, compete in local 10K races and track my personal bests.",
+    "reason": "hobby"
+  },
+  {
+    "label": "personal",
+    "text": "Enjoy volunteering at the animal shelter on Saturdays.",
+    "reason": "hobby"
+  },
+  {
+    "label": "personal",
+    "text": "In my spare time, practice yoga and meditation every morning before work.",
+    "reason": "hobby"
+  },
+  {
+    "label": "personal",
+    "text": "Enjoy volunteering at the animal shelter on Saturdays.",
+    "reason": "hobby"
+  },
+  {
+    "label": "personal",
+    "text": "In my spare time, outside work I decompress by hiking and taking landscape photographs.",
+    "reason": "hobby"
+  },
+  {
+    "label": "professional",
+    "text": "Mentored junior developers on secure coding practices and code reviews.",
+    "reason": "work context"
+  },
+  {
+    "label": "professional",
+    "text": "Recently conducted user research interviews and synthesized findings into actionable design recommendations.",
+    "reason": "work context"
+  },
+  {
+    "label": "professional",
+    "text": "Recently led a cross-functional engineering team delivering typescript/react features for enterprise clients.",
+    "reason": "work context"
+  },
+  {
+    "label": "personal",
+    "text": "Practice yoga and meditation every morning before work.",
+    "reason": "hobby"
+  },
+  {
+    "label": "personal",
+    "text": "In my spare time, write sci-fi short stories and share them online.",
+    "reason": "hobby"
+  },
+  {
+    "label": "personal",
+    "text": "In my spare time, spend spare time cycling across the countryside.",
+    "reason": "hobby"
+  },
+  {
+    "label": "personal",
+    "text": "Compete in local 10K races and track my personal bests.",
+    "reason": "hobby"
+  },
+  {
+    "label": "professional",
+    "text": "Mentored junior developers on secure coding practices and code reviews.",
+    "reason": "work context"
+  },
+  {
+    "label": "professional",
+    "text": "Recently conducted user research interviews and synthesized findings into actionable design recommendations.",
+    "reason": "work context"
+  },
+  {
+    "label": "personal",
+    "text": "Love exploring coffee shops and blogging about espresso tasting notes.",
+    "reason": "hobby"
+  },
+  {
+    "label": "professional",
+    "text": "Recently managed aws infrastructure and built ci/cd pipelines using github actions.",
+    "reason": "work context"
+  },
+  {
+    "label": "personal",
+    "text": "In my spare time, enjoy building LEGO models with my kids in the evenings.",
+    "reason": "hobby"
+  },
+  {
+    "label": "personal",
+    "text": "In my spare time, enjoy building LEGO models with my kids in the evenings.",
+    "reason": "hobby"
+  },
+  {
+    "label": "personal",
+    "text": "Love exploring coffee shops and blogging about espresso tasting notes.",
+    "reason": "hobby"
+  },
+  {
+    "label": "professional",
+    "text": "Managed AWS infrastructure and built CI/CD pipelines using GitHub Actions.",
+    "reason": "work context"
+  },
+  {
+    "label": "professional",
+    "text": "Implemented Django microservices handling fintech transactions and compliance.",
+    "reason": "work context"
+  },
+  {
+    "label": "personal",
+    "text": "In my spare time, practice yoga and meditation every morning before work.",
+    "reason": "hobby"
+  },
+  {
+    "label": "personal",
+    "text": "Enjoy mentoring students informally at community events.",
+    "reason": "hobby"
+  },
+  {
+    "label": "personal",
+    "text": "I am passionate about playing guitar in a local band.",
+    "reason": "hobby"
+  },
+  {
+    "label": "professional",
+    "text": "Conducted user research interviews and synthesized findings into actionable design recommendations.",
+    "reason": "work context"
+  },
+  {
+    "label": "personal",
+    "text": "In my spare time, write sci-fi short stories and share them online.",
+    "reason": "hobby"
+  },
+  {
+    "label": "personal",
+    "text": "Enjoy mentoring students informally at community events.",
+    "reason": "hobby"
+  },
+  {
+    "label": "personal",
+    "text": "In my spare time, enjoy mentoring students informally at community events.",
+    "reason": "hobby"
+  },
+  {
+    "label": "personal",
+    "text": "In my spare time, i like cooking Thai food and experimenting with new recipes on weekends.",
+    "reason": "hobby"
+  },
+  {
+    "label": "personal",
+    "text": "In my spare time, i like cooking Thai food and experimenting with new recipes on weekends.",
+    "reason": "hobby"
+  },
+  {
+    "label": "personal",
+    "text": "In my spare time, collect vintage video games and restore old consoles.",
+    "reason": "hobby"
+  },
+  {
+    "label": "personal",
+    "text": "Love exploring coffee shops and blogging about espresso tasting notes.",
+    "reason": "hobby"
+  },
+  {
+    "label": "personal",
+    "text": "Compete in local 10K races and track my personal bests.",
+    "reason": "hobby"
+  },
+  {
+    "label": "professional",
+    "text": "Certified Scrum Product Owner with 4 years facilitating agile ceremonies.",
+    "reason": "work context"
+  },
+  {
+    "label": "personal",
+    "text": "Outside work I decompress by hiking and taking landscape photographs.",
+    "reason": "hobby"
+  },
+  {
+    "label": "professional",
+    "text": "Recently coordinated teacher training sessions and developed new curriculum for kindergarten students.",
+    "reason": "work context"
+  },
+  {
+    "label": "personal",
+    "text": "Enjoy mentoring students informally at community events.",
+    "reason": "hobby"
+  },
+  {
+    "label": "personal",
+    "text": "In my spare time, i like cooking Thai food and experimenting with new recipes on weekends.",
+    "reason": "hobby"
+  },
+  {
+    "label": "personal",
+    "text": "Practice yoga and meditation every morning before work.",
+    "reason": "hobby"
+  },
+  {
+    "label": "personal",
+    "text": "Enjoy building LEGO models with my kids in the evenings.",
+    "reason": "hobby"
+  },
+  {
+    "label": "personal",
+    "text": "Compete in local 10K races and track my personal bests.",
+    "reason": "hobby"
+  },
+  {
+    "label": "personal",
+    "text": "In my spare time, enjoy building LEGO models with my kids in the evenings.",
+    "reason": "hobby"
+  },
+  {
+    "label": "professional",
+    "text": "Recently conducted user research interviews and synthesized findings into actionable design recommendations.",
+    "reason": "work context"
+  },
+  {
+    "label": "personal",
+    "text": "Spend spare time cycling across the countryside.",
+    "reason": "hobby"
+  },
+  {
+    "label": "professional",
+    "text": "Migrated legacy PHP services to Go microservices reducing latency by 35%.",
+    "reason": "work context"
+  },
+  {
+    "label": "personal",
+    "text": "Enjoy mentoring students informally at community events.",
+    "reason": "hobby"
+  },
+  {
+    "label": "professional",
+    "text": "Recently managed \u20ac5m fundraising portfolio and prepared grant applications.",
+    "reason": "work context"
+  },
+  {
+    "label": "professional",
+    "text": "Conducted user research interviews and synthesized findings into actionable design recommendations.",
+    "reason": "work context"
+  },
+  {
+    "label": "professional",
+    "text": "Recently led a cross-functional engineering team delivering typescript/react features for enterprise clients.",
+    "reason": "work context"
+  },
+  {
+    "label": "professional",
+    "text": "Designed Figma prototypes and handed off UI specs to developers.",
+    "reason": "work context"
+  },
+  {
+    "label": "personal",
+    "text": "Collect vintage video games and restore old consoles.",
+    "reason": "hobby"
+  },
+  {
+    "label": "personal",
+    "text": "In my spare time, outside work I decompress by hiking and taking landscape photographs.",
+    "reason": "hobby"
+  },
+  {
+    "label": "professional",
+    "text": "Certified Scrum Product Owner with 4 years facilitating agile ceremonies.",
+    "reason": "work context"
+  },
+  {
+    "label": "personal",
+    "text": "Outside work I decompress by hiking and taking landscape photographs.",
+    "reason": "hobby"
+  },
+  {
+    "label": "professional",
+    "text": "Oversaw \u20ac5M fundraising portfolio and prepared grant applications.",
+    "reason": "work context"
+  },
+  {
+    "label": "personal",
+    "text": "In my spare time, enjoy volunteering at the animal shelter on Saturdays.",
+    "reason": "hobby"
+  },
+  {
+    "label": "professional",
+    "text": "Migrated legacy PHP services to Go microservices reducing latency by 35%.",
+    "reason": "work context"
+  },
+  {
+    "label": "personal",
+    "text": "In my spare time, i like cooking Thai food and experimenting with new recipes on weekends.",
+    "reason": "hobby"
+  },
+  {
+    "label": "personal",
+    "text": "Enjoy building LEGO models with my kids in the evenings.",
+    "reason": "hobby"
+  },
+  {
+    "label": "professional",
+    "text": "Implemented Django microservices handling fintech transactions and compliance.",
+    "reason": "work context"
+  },
+  {
+    "label": "personal",
+    "text": "In my spare time, spend spare time cycling across the countryside.",
+    "reason": "hobby"
+  },
+  {
+    "label": "professional",
+    "text": "Coordinated teacher training sessions and developed new curriculum for kindergarten students.",
+    "reason": "work context"
+  },
+  {
+    "label": "personal",
+    "text": "In my spare time, i like cooking Thai food and experimenting with new recipes on weekends.",
+    "reason": "hobby"
+  },
+  {
+    "label": "professional",
+    "text": "Designed Figma prototypes and handed off UI specs to developers.",
+    "reason": "work context"
+  },
+  {
+    "label": "professional",
+    "text": "Recently automated regression test suites using playwright and improved coverage by 40%.",
+    "reason": "work context"
+  },
+  {
+    "label": "personal",
+    "text": "Compete in local 10K races and track my personal bests.",
+    "reason": "hobby"
+  },
+  {
+    "label": "professional",
+    "text": "Certified Scrum Product Owner with 4 years facilitating agile ceremonies.",
+    "reason": "work context"
+  },
+  {
+    "label": "personal",
+    "text": "In my spare time, compete in local 10K races and track my personal bests.",
+    "reason": "hobby"
+  },
+  {
+    "label": "professional",
+    "text": "Migrated legacy PHP services to Go microservices reducing latency by 35%.",
+    "reason": "work context"
+  },
+  {
+    "label": "professional",
+    "text": "Mentored junior developers on secure coding practices and code reviews.",
+    "reason": "work context"
+  },
+  {
+    "label": "professional",
+    "text": "Completed a Master's degree in Data Science with focus on machine learning.",
+    "reason": "work context"
+  },
+  {
+    "label": "personal",
+    "text": "In my spare time, outside work I decompress by hiking and taking landscape photographs.",
+    "reason": "hobby"
+  },
+  {
+    "label": "professional",
+    "text": "Recently conducted user research interviews and synthesized findings into actionable design recommendations.",
+    "reason": "work context"
+  },
+  {
+    "label": "professional",
+    "text": "Migrated legacy PHP services to Go microservices reducing latency by 35%.",
+    "reason": "work context"
+  },
+  {
+    "label": "professional",
+    "text": "Automated regression test suites using Playwright and improved coverage by 40%.",
+    "reason": "work context"
+  },
+  {
+    "label": "professional",
+    "text": "Managed \u20ac5M fundraising portfolio and prepared grant applications.",
+    "reason": "work context"
+  },
+  {
+    "label": "personal",
+    "text": "In my spare time, i like cooking Thai food and experimenting with new recipes on weekends.",
+    "reason": "hobby"
+  },
+  {
+    "label": "professional",
+    "text": "Recently designed figma prototypes and handed off ui specs to developers.",
+    "reason": "work context"
+  },
+  {
+    "label": "personal",
+    "text": "In my spare time, enjoy mentoring students informally at community events.",
+    "reason": "hobby"
+  },
+  {
+    "label": "personal",
+    "text": "In my spare time, spend spare time cycling across the countryside.",
+    "reason": "hobby"
+  },
+  {
+    "label": "professional",
+    "text": "Completed a Master's degree in Data Science with focus on machine learning.",
+    "reason": "work context"
+  },
+  {
+    "label": "professional",
+    "text": "Recently led a cross-functional engineering team delivering typescript/react features for enterprise clients.",
+    "reason": "work context"
+  },
+  {
+    "label": "personal",
+    "text": "In my spare time, collect vintage video games and restore old consoles.",
+    "reason": "hobby"
+  },
+  {
+    "label": "personal",
+    "text": "Practice yoga and meditation every morning before work.",
+    "reason": "hobby"
+  },
+  {
+    "label": "professional",
+    "text": "Conducted user research interviews and synthesized findings into actionable design recommendations.",
+    "reason": "work context"
+  },
+  {
+    "label": "personal",
+    "text": "In my spare time, practice yoga and meditation every morning before work.",
+    "reason": "hobby"
+  },
+  {
+    "label": "personal",
+    "text": "Write sci-fi short stories and share them online.",
+    "reason": "hobby"
+  },
+  {
+    "label": "professional",
+    "text": "Managed \u20ac5M fundraising portfolio and prepared grant applications.",
+    "reason": "work context"
+  },
+  {
+    "label": "professional",
+    "text": "Led a cross-functional engineering team delivering TypeScript/React features for enterprise clients.",
+    "reason": "work context"
+  },
+  {
+    "label": "personal",
+    "text": "I am passionate about playing guitar in a local band.",
+    "reason": "hobby"
+  },
+  {
+    "label": "professional",
+    "text": "Recently completed a master's degree in data science with focus on machine learning.",
+    "reason": "work context"
+  },
+  {
+    "label": "personal",
+    "text": "Enjoy volunteering at the animal shelter on Saturdays.",
+    "reason": "hobby"
+  },
+  {
+    "label": "personal",
+    "text": "Write sci-fi short stories and share them online.",
+    "reason": "hobby"
+  },
+  {
+    "label": "professional",
+    "text": "Implemented Django microservices handling fintech transactions and compliance.",
+    "reason": "work context"
+  },
+  {
+    "label": "professional",
+    "text": "Recently certified scrum product owner with 4 years facilitating agile ceremonies.",
+    "reason": "work context"
+  },
+  {
+    "label": "professional",
+    "text": "Oversaw \u20ac5M fundraising portfolio and prepared grant applications.",
+    "reason": "work context"
+  },
+  {
+    "label": "personal",
+    "text": "In my spare time, enjoy building LEGO models with my kids in the evenings.",
+    "reason": "hobby"
+  },
+  {
+    "label": "personal",
+    "text": "Love exploring coffee shops and blogging about espresso tasting notes.",
+    "reason": "hobby"
+  },
+  {
+    "label": "professional",
+    "text": "Recently mentored junior developers on secure coding practices and code reviews.",
+    "reason": "work context"
+  },
+  {
+    "label": "professional",
+    "text": "Recently certified scrum product owner with 4 years facilitating agile ceremonies.",
+    "reason": "work context"
+  },
+  {
+    "label": "personal",
+    "text": "Compete in local 10K races and track my personal bests.",
+    "reason": "hobby"
+  },
+  {
+    "label": "personal",
+    "text": "Collect vintage video games and restore old consoles.",
+    "reason": "hobby"
+  },
+  {
+    "label": "professional",
+    "text": "Migrated legacy PHP services to Go microservices reducing latency by 35%.",
+    "reason": "work context"
+  },
+  {
+    "label": "professional",
+    "text": "Automated regression test suites using Playwright and improved coverage by 40%.",
+    "reason": "work context"
+  },
+  {
+    "label": "personal",
+    "text": "In my spare time, enjoy building LEGO models with my kids in the evenings.",
+    "reason": "hobby"
+  },
+  {
+    "label": "professional",
+    "text": "Recently conducted user research interviews and synthesized findings into actionable design recommendations.",
+    "reason": "work context"
+  },
+  {
+    "label": "personal",
+    "text": "I like cooking Thai food and experimenting with new recipes on weekends.",
+    "reason": "hobby"
+  },
+  {
+    "label": "professional",
+    "text": "Coordinated teacher training sessions and developed new curriculum for kindergarten students.",
+    "reason": "work context"
+  },
+  {
+    "label": "personal",
+    "text": "In my spare time, spend spare time cycling across the countryside.",
+    "reason": "hobby"
+  },
+  {
+    "label": "personal",
+    "text": "I am passionate about playing guitar in a local band.",
+    "reason": "hobby"
+  },
+  {
+    "label": "personal",
+    "text": "Collect vintage video games and restore old consoles.",
+    "reason": "hobby"
+  },
+  {
+    "label": "personal",
+    "text": "I like cooking Thai food and experimenting with new recipes on weekends.",
+    "reason": "hobby"
+  },
+  {
+    "label": "professional",
+    "text": "Certified Scrum Product Owner with 4 years facilitating agile ceremonies.",
+    "reason": "work context"
+  },
+  {
+    "label": "personal",
+    "text": "In my spare time, i am passionate about playing guitar in a local band.",
+    "reason": "hobby"
+  },
+  {
+    "label": "professional",
+    "text": "Recently managed aws infrastructure and built ci/cd pipelines using github actions.",
+    "reason": "work context"
+  },
+  {
+    "label": "professional",
+    "text": "Managed AWS infrastructure and built CI/CD pipelines using GitHub Actions.",
+    "reason": "work context"
+  },
+  {
+    "label": "personal",
+    "text": "Enjoy mentoring students informally at community events.",
+    "reason": "hobby"
+  },
+  {
+    "label": "professional",
+    "text": "Migrated legacy PHP services to Go microservices reducing latency by 35%.",
+    "reason": "work context"
+  },
+  {
+    "label": "personal",
+    "text": "In my spare time, compete in local 10K races and track my personal bests.",
+    "reason": "hobby"
+  },
+  {
+    "label": "professional",
+    "text": "Recently designed figma prototypes and handed off ui specs to developers.",
+    "reason": "work context"
+  },
+  {
+    "label": "professional",
+    "text": "Completed a Master's degree in Data Science with focus on machine learning.",
+    "reason": "work context"
+  },
+  {
+    "label": "personal",
+    "text": "Spend spare time cycling across the countryside.",
+    "reason": "hobby"
+  },
+  {
+    "label": "personal",
+    "text": "Collect vintage video games and restore old consoles.",
+    "reason": "hobby"
+  },
+  {
+    "label": "personal",
+    "text": "In my spare time, i am passionate about playing guitar in a local band.",
+    "reason": "hobby"
+  },
+  {
+    "label": "personal",
+    "text": "In my spare time, love exploring coffee shops and blogging about espresso tasting notes.",
+    "reason": "hobby"
+  },
+  {
+    "label": "personal",
+    "text": "Enjoy building LEGO models with my kids in the evenings.",
+    "reason": "hobby"
+  },
+  {
+    "label": "professional",
+    "text": "Mentored junior developers on secure coding practices and code reviews.",
+    "reason": "work context"
+  },
+  {
+    "label": "personal",
+    "text": "Enjoy mentoring students informally at community events.",
+    "reason": "hobby"
+  },
+  {
+    "label": "professional",
+    "text": "Automated regression test suites using Playwright and improved coverage by 40%.",
+    "reason": "work context"
+  },
+  {
+    "label": "personal",
+    "text": "Spend spare time cycling across the countryside.",
+    "reason": "hobby"
+  },
+  {
+    "label": "personal",
+    "text": "In my spare time, love exploring coffee shops and blogging about espresso tasting notes.",
+    "reason": "hobby"
+  },
+  {
+    "label": "personal",
+    "text": "In my spare time, i am passionate about playing guitar in a local band.",
+    "reason": "hobby"
+  },
+  {
+    "label": "professional",
+    "text": "Managed AWS infrastructure and built CI/CD pipelines using GitHub Actions.",
+    "reason": "work context"
+  },
+  {
+    "label": "personal",
+    "text": "In my spare time, i am passionate about playing guitar in a local band.",
+    "reason": "hobby"
+  },
+  {
+    "label": "personal",
+    "text": "I like cooking Thai food and experimenting with new recipes on weekends.",
+    "reason": "hobby"
+  },
+  {
+    "label": "personal",
+    "text": "In my spare time, compete in local 10K races and track my personal bests.",
+    "reason": "hobby"
+  },
+  {
+    "label": "professional",
+    "text": "Mentored junior developers on secure coding practices and code reviews.",
+    "reason": "work context"
+  },
+  {
+    "label": "professional",
+    "text": "Recently migrated legacy php services to go microservices reducing latency by 35%.",
+    "reason": "work context"
+  },
+  {
+    "label": "professional",
+    "text": "Recently mentored junior developers on secure coding practices and code reviews.",
+    "reason": "work context"
+  },
+  {
+    "label": "professional",
+    "text": "Recently migrated legacy php services to go microservices reducing latency by 35%.",
+    "reason": "work context"
+  },
+  {
+    "label": "personal",
+    "text": "In my spare time, enjoy volunteering at the animal shelter on Saturdays.",
+    "reason": "hobby"
+  },
+  {
+    "label": "professional",
+    "text": "Recently managed aws infrastructure and built ci/cd pipelines using github actions.",
+    "reason": "work context"
+  },
+  {
+    "label": "professional",
+    "text": "Recently completed a master's degree in data science with focus on machine learning.",
+    "reason": "work context"
+  },
+  {
+    "label": "personal",
+    "text": "In my spare time, compete in local 10K races and track my personal bests.",
+    "reason": "hobby"
+  },
+  {
+    "label": "professional",
+    "text": "Recently managed aws infrastructure and built ci/cd pipelines using github actions.",
+    "reason": "work context"
+  },
+  {
+    "label": "professional",
+    "text": "Certified Scrum Product Owner with 4 years facilitating agile ceremonies.",
+    "reason": "work context"
+  },
+  {
+    "label": "personal",
+    "text": "I am passionate about playing guitar in a local band.",
+    "reason": "hobby"
+  },
+  {
+    "label": "personal",
+    "text": "In my spare time, practice yoga and meditation every morning before work.",
+    "reason": "hobby"
+  },
+  {
+    "label": "professional",
+    "text": "Implemented Django microservices handling fintech transactions and compliance.",
+    "reason": "work context"
+  },
+  {
+    "label": "professional",
+    "text": "Led a cross-functional engineering team delivering TypeScript/React features for enterprise clients.",
+    "reason": "work context"
+  },
+  {
+    "label": "personal",
+    "text": "In my spare time, enjoy building LEGO models with my kids in the evenings.",
+    "reason": "hobby"
+  },
+  {
+    "label": "professional",
+    "text": "Completed a Master's degree in Data Science with focus on machine learning.",
+    "reason": "work context"
+  },
+  {
+    "label": "professional",
+    "text": "Recently coordinated teacher training sessions and developed new curriculum for kindergarten students.",
+    "reason": "work context"
+  },
+  {
+    "label": "personal",
+    "text": "Outside work I decompress by hiking and taking landscape photographs.",
+    "reason": "hobby"
+  },
+  {
+    "label": "professional",
+    "text": "Led a cross-functional engineering team delivering TypeScript/React features for enterprise clients.",
+    "reason": "work context"
+  },
+  {
+    "label": "professional",
+    "text": "Spearheaded a cross-functional engineering team delivering TypeScript/React features for enterprise clients.",
+    "reason": "work context"
+  },
+  {
+    "label": "personal",
+    "text": "In my spare time, i am passionate about playing guitar in a local band.",
+    "reason": "hobby"
+  },
+  {
+    "label": "personal",
+    "text": "I like cooking Thai food and experimenting with new recipes on weekends.",
+    "reason": "hobby"
+  },
+  {
+    "label": "professional",
+    "text": "Recently implemented django microservices handling fintech transactions and compliance.",
+    "reason": "work context"
+  },
+  {
+    "label": "personal",
+    "text": "Write sci-fi short stories and share them online.",
+    "reason": "hobby"
+  },
+  {
+    "label": "professional",
+    "text": "Recently implemented django microservices handling fintech transactions and compliance.",
+    "reason": "work context"
+  },
+  {
+    "label": "personal",
+    "text": "In my spare time, enjoy volunteering at the animal shelter on Saturdays.",
+    "reason": "hobby"
+  },
+  {
+    "label": "professional",
+    "text": "Designed Figma prototypes and handed off UI specs to developers.",
+    "reason": "work context"
+  },
+  {
+    "label": "personal",
+    "text": "In my spare time, collect vintage video games and restore old consoles.",
+    "reason": "hobby"
+  },
+  {
+    "label": "professional",
+    "text": "Certified Scrum Product Owner with 4 years facilitating agile ceremonies.",
+    "reason": "work context"
+  },
+  {
+    "label": "professional",
+    "text": "Oversaw AWS infrastructure and built CI/CD pipelines using GitHub Actions.",
+    "reason": "work context"
+  },
+  {
+    "label": "professional",
+    "text": "Managed \u20ac5M fundraising portfolio and prepared grant applications.",
+    "reason": "work context"
+  },
+  {
+    "label": "personal",
+    "text": "Enjoy mentoring students informally at community events.",
+    "reason": "hobby"
+  },
+  {
+    "label": "personal",
+    "text": "Enjoy building LEGO models with my kids in the evenings.",
+    "reason": "hobby"
+  },
+  {
+    "label": "personal",
+    "text": "Compete in local 10K races and track my personal bests.",
+    "reason": "hobby"
+  },
+  {
+    "label": "professional",
+    "text": "Recently managed \u20ac5m fundraising portfolio and prepared grant applications.",
+    "reason": "work context"
+  },
+  {
+    "label": "personal",
+    "text": "In my spare time, enjoy mentoring students informally at community events.",
+    "reason": "hobby"
+  },
+  {
+    "label": "professional",
+    "text": "Conducted user research interviews and synthesized findings into actionable design recommendations.",
+    "reason": "work context"
+  },
+  {
+    "label": "professional",
+    "text": "Completed a Master's degree in Data Science with focus on machine learning.",
+    "reason": "work context"
+  },
+  {
+    "label": "personal",
+    "text": "Enjoy volunteering at the animal shelter on Saturdays.",
+    "reason": "hobby"
+  },
+  {
+    "label": "personal",
+    "text": "In my spare time, write sci-fi short stories and share them online.",
+    "reason": "hobby"
+  },
+  {
+    "label": "personal",
+    "text": "In my spare time, write sci-fi short stories and share them online.",
+    "reason": "hobby"
+  },
+  {
+    "label": "personal",
+    "text": "Love exploring coffee shops and blogging about espresso tasting notes.",
+    "reason": "hobby"
+  },
+  {
+    "label": "personal",
+    "text": "Enjoy building LEGO models with my kids in the evenings.",
+    "reason": "hobby"
+  },
+  {
+    "label": "personal",
+    "text": "In my spare time, love exploring coffee shops and blogging about espresso tasting notes.",
+    "reason": "hobby"
+  },
+  {
+    "label": "personal",
+    "text": "In my spare time, love exploring coffee shops and blogging about espresso tasting notes.",
+    "reason": "hobby"
+  },
+  {
+    "label": "professional",
+    "text": "Managed \u20ac5M fundraising portfolio and prepared grant applications.",
+    "reason": "work context"
+  },
+  {
+    "label": "personal",
+    "text": "In my spare time, i like cooking Thai food and experimenting with new recipes on weekends.",
+    "reason": "hobby"
+  },
+  {
+    "label": "professional",
+    "text": "Implemented Django microservices handling fintech transactions and compliance.",
+    "reason": "work context"
+  },
+  {
+    "label": "professional",
+    "text": "Managed AWS infrastructure and built CI/CD pipelines using GitHub Actions.",
+    "reason": "work context"
+  },
+  {
+    "label": "personal",
+    "text": "I am passionate about playing guitar in a local band.",
+    "reason": "hobby"
+  },
+  {
+    "label": "professional",
+    "text": "Recently managed \u20ac5m fundraising portfolio and prepared grant applications.",
+    "reason": "work context"
+  },
+  {
+    "label": "personal",
+    "text": "Outside work I decompress by hiking and taking landscape photographs.",
+    "reason": "hobby"
+  },
+  {
+    "label": "personal",
+    "text": "In my spare time, love exploring coffee shops and blogging about espresso tasting notes.",
+    "reason": "hobby"
+  },
+  {
+    "label": "personal",
+    "text": "In my spare time, practice yoga and meditation every morning before work.",
+    "reason": "hobby"
+  },
+  {
+    "label": "professional",
+    "text": "Completed a Master's degree in Data Science with focus on machine learning.",
+    "reason": "work context"
+  },
+  {
+    "label": "personal",
+    "text": "Spend spare time cycling across the countryside.",
+    "reason": "hobby"
+  },
+  {
+    "label": "professional",
+    "text": "Recently mentored junior developers on secure coding practices and code reviews.",
+    "reason": "work context"
+  },
+  {
+    "label": "personal",
+    "text": "In my spare time, outside work I decompress by hiking and taking landscape photographs.",
+    "reason": "hobby"
+  },
+  {
+    "label": "professional",
+    "text": "Conducted user research interviews and synthesized findings into actionable design recommendations.",
+    "reason": "work context"
+  },
+  {
+    "label": "professional",
+    "text": "Oversaw \u20ac5M fundraising portfolio and prepared grant applications.",
+    "reason": "work context"
+  },
+  {
+    "label": "professional",
+    "text": "Conducted user research interviews and synthesized findings into actionable design recommendations.",
+    "reason": "work context"
+  },
+  {
+    "label": "professional",
+    "text": "Completed a Master's degree in Data Science with focus on machine learning.",
+    "reason": "work context"
+  },
+  {
+    "label": "professional",
+    "text": "Coordinated teacher training sessions and developed new curriculum for kindergarten students.",
+    "reason": "work context"
+  },
+  {
+    "label": "professional",
+    "text": "Recently certified scrum product owner with 4 years facilitating agile ceremonies.",
+    "reason": "work context"
+  },
+  {
+    "label": "professional",
+    "text": "Coordinated teacher training sessions and developed new curriculum for kindergarten students.",
+    "reason": "work context"
+  },
+  {
+    "label": "professional",
+    "text": "Oversaw \u20ac5M fundraising portfolio and prepared grant applications.",
+    "reason": "work context"
+  },
+  {
+    "label": "professional",
+    "text": "Automated regression test suites using Playwright and improved coverage by 40%.",
+    "reason": "work context"
+  },
+  {
+    "label": "personal",
+    "text": "I am passionate about playing guitar in a local band.",
+    "reason": "hobby"
+  },
+  {
+    "label": "personal",
+    "text": "In my spare time, practice yoga and meditation every morning before work.",
+    "reason": "hobby"
+  },
+  {
+    "label": "professional",
+    "text": "Coordinated teacher training sessions and developed new curriculum for kindergarten students.",
+    "reason": "work context"
+  },
+  {
+    "label": "professional",
+    "text": "Recently completed a master's degree in data science with focus on machine learning.",
+    "reason": "work context"
+  },
+  {
+    "label": "personal",
+    "text": "In my spare time, collect vintage video games and restore old consoles.",
+    "reason": "hobby"
+  },
+  {
+    "label": "professional",
+    "text": "Mentored junior developers on secure coding practices and code reviews.",
+    "reason": "work context"
+  },
+  {
+    "label": "personal",
+    "text": "In my spare time, collect vintage video games and restore old consoles.",
+    "reason": "hobby"
+  },
+  {
+    "label": "professional",
+    "text": "Recently designed figma prototypes and handed off ui specs to developers.",
+    "reason": "work context"
+  },
+  {
+    "label": "personal",
+    "text": "Practice yoga and meditation every morning before work.",
+    "reason": "hobby"
+  },
+  {
+    "label": "personal",
+    "text": "In my spare time, love exploring coffee shops and blogging about espresso tasting notes.",
+    "reason": "hobby"
+  },
+  {
+    "label": "personal",
+    "text": "In my spare time, collect vintage video games and restore old consoles.",
+    "reason": "hobby"
+  },
+  {
+    "label": "professional",
+    "text": "Recently coordinated teacher training sessions and developed new curriculum for kindergarten students.",
+    "reason": "work context"
+  },
+  {
+    "label": "professional",
+    "text": "Recently designed figma prototypes and handed off ui specs to developers.",
+    "reason": "work context"
+  },
+  {
+    "label": "personal",
+    "text": "In my spare time, enjoy building LEGO models with my kids in the evenings.",
+    "reason": "hobby"
+  },
+  {
+    "label": "personal",
+    "text": "In my spare time, enjoy mentoring students informally at community events.",
+    "reason": "hobby"
+  },
+  {
+    "label": "professional",
+    "text": "Oversaw AWS infrastructure and built CI/CD pipelines using GitHub Actions.",
+    "reason": "work context"
+  },
+  {
+    "label": "professional",
+    "text": "Recently automated regression test suites using playwright and improved coverage by 40%.",
+    "reason": "work context"
+  },
+  {
+    "label": "professional",
+    "text": "Recently completed a master's degree in data science with focus on machine learning.",
+    "reason": "work context"
+  },
+  {
+    "label": "professional",
+    "text": "Coordinated teacher training sessions and developed new curriculum for kindergarten students.",
+    "reason": "work context"
+  },
+  {
+    "label": "personal",
+    "text": "In my spare time, spend spare time cycling across the countryside.",
+    "reason": "hobby"
+  },
+  {
+    "label": "professional",
+    "text": "Led a cross-functional engineering team delivering TypeScript/React features for enterprise clients.",
+    "reason": "work context"
+  },
+  {
+    "label": "personal",
+    "text": "Enjoy volunteering at the animal shelter on Saturdays.",
+    "reason": "hobby"
+  },
+  {
+    "label": "professional",
+    "text": "Conducted user research interviews and synthesized findings into actionable design recommendations.",
+    "reason": "work context"
+  },
+  {
+    "label": "professional",
+    "text": "Managed \u20ac5M fundraising portfolio and prepared grant applications.",
+    "reason": "work context"
+  },
+  {
+    "label": "personal",
+    "text": "I like cooking Thai food and experimenting with new recipes on weekends.",
+    "reason": "hobby"
+  },
+  {
+    "label": "professional",
+    "text": "Migrated legacy PHP services to Go microservices reducing latency by 35%.",
+    "reason": "work context"
+  },
+  {
+    "label": "personal",
+    "text": "In my spare time, write sci-fi short stories and share them online.",
+    "reason": "hobby"
+  },
+  {
+    "label": "personal",
+    "text": "In my spare time, write sci-fi short stories and share them online.",
+    "reason": "hobby"
+  },
+  {
+    "label": "personal",
+    "text": "Enjoy volunteering at the animal shelter on Saturdays.",
+    "reason": "hobby"
+  },
+  {
+    "label": "professional",
+    "text": "Recently migrated legacy php services to go microservices reducing latency by 35%.",
+    "reason": "work context"
+  },
+  {
+    "label": "personal",
+    "text": "Enjoy volunteering at the animal shelter on Saturdays.",
+    "reason": "hobby"
+  },
+  {
+    "label": "professional",
+    "text": "Recently led a cross-functional engineering team delivering typescript/react features for enterprise clients.",
+    "reason": "work context"
+  },
+  {
+    "label": "personal",
+    "text": "I am passionate about playing guitar in a local band.",
+    "reason": "hobby"
+  },
+  {
+    "label": "professional",
+    "text": "Build front-end websites for local restaurants as paid freelance contracts and deliver invoices each month.",
+    "reason": "client work"
+  },
+  {
+    "label": "professional",
+    "text": "Produce branded landing pages for food trucks and manage their maintenance retainers.",
+    "reason": "client work"
+  },
+  {
+    "label": "personal",
+    "text": "DJ small shows on weekends purely for fun and exposure.",
+    "reason": "hobby"
+  },
+  {
+    "label": "personal",
+    "text": "Produce remixes in my bedroom studio without releasing them commercially.",
+    "reason": "hobby"
+  },
+  {
+    "label": "professional",
+    "text": "Operate a catering side business serving private events and filing quarterly taxes.",
+    "reason": "paid side business"
+  },
+  {
+    "label": "personal",
+    "text": "Tinker with HTML templates for friends without charging.",
+    "reason": "hobby"
+  },
+  {
+    "label": "professional",
+    "text": "Consult on menu engineering for neighborhood restaurants as a paid advisor.",
+    "reason": "client consulting"
+  },
+  {
+    "label": "personal",
+    "text": "Spin records at community markets to share playlists and socialize.",
+    "reason": "hobby"
+  },
+  {
+    "label": "professional",
+    "text": "Sell custom pastry boxes online and track monthly revenue streams.",
+    "reason": "business"
+  },
+  {
+    "label": "personal",
+    "text": "Blog about latte art techniques just for personal satisfaction.",
+    "reason": "hobby"
+  }
+]

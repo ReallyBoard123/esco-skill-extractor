@@ -6,11 +6,13 @@ from fastapi import FastAPI, HTTPException, UploadFile, File, Form
 from fastapi.middleware.cors import CORSMiddleware
 
 from core.extractor import ESCOExtractor
+from core.intelligent_analyzer import IntelligentCVAnalyzer
 from core.config import API_INFO
 from models.requests import ExtractRequest
 
-# Global extractor
+# Global extractors
 _extractor = None
+_intelligent_analyzer = None
 
 
 def create_app(
@@ -21,7 +23,7 @@ def create_app(
 ) -> FastAPI:
     """Create simple FastAPI app"""
     
-    global _extractor
+    global _extractor, _intelligent_analyzer
     
     print(f"🚀 Initializing ESCO Extractor...")
     print(f"📊 Model: {model}")
@@ -32,6 +34,9 @@ def create_app(
         occupation_threshold=occupation_threshold,
         device=device
     )
+    
+    print(f"🧠 Initializing Intelligent CV Analyzer...")
+    _intelligent_analyzer = IntelligentCVAnalyzer()
     
     app = FastAPI(
         title=API_INFO["title"],
@@ -57,11 +62,6 @@ def create_app(
             "model": model,
             "features": API_INFO["features"],
             "endpoints": {
-                "extract_rich": "/extract-rich",
-                "extract_basic": "/extract-basic", 
-                "extract_pdf": "/extract-pdf-skills",
-                "search_skills": "/search/skills",
-                "search_occupations": "/search/occupations",
                 "health": "/health",
                 "categories": "/categories"
             }
@@ -81,221 +81,72 @@ def create_app(
     async def get_categories():
         return _extractor.get_category_summary()
     
-    @app.post("/extract-rich", tags=["Extraction"])
-    async def extract_rich(request: ExtractRequest):
-        try:
-            start_time = time.time()
-            
-            skill_matches = _extractor.extract_skills(
-                request.text,
-                threshold=request.skills_threshold,
-                max_results=request.max_results
-            )
-            
-            occupation_matches = _extractor.extract_occupations(
-                request.text,
-                threshold=request.occupations_threshold,
-                max_results=request.max_results
-            )
-            
-            # Enrich with cross-referenced data
-            rich_skills = []
-            for skill_match in skill_matches:
-                try:
-                    rich_skill = _extractor.get_rich_skill_data(
-                        skill_match['uri'],
-                        similarity=skill_match['similarity']
-                    )
-                    rich_skills.append(rich_skill)
-                except ValueError:
-                    continue
-            
-            rich_occupations = []
-            for occupation_match in occupation_matches:
-                try:
-                    rich_occupation = _extractor.get_rich_occupation_data(
-                        occupation_match['uri'],
-                        similarity=occupation_match['similarity']
-                    )
-                    rich_occupations.append(rich_occupation)
-                except ValueError:
-                    continue
-            
-            processing_time = time.time() - start_time
-            
-            return {
-                "skills": rich_skills,
-                "occupations": rich_occupations,
-                "metadata": {
-                    "processedText": request.text,
-                    "totalSkillsFound": len(rich_skills),
-                    "totalOccupationsFound": len(rich_occupations),
-                    "processingTime": f"{processing_time:.2f}s",
-                    "thresholds": {
-                        "skills": request.skills_threshold or _extractor.skills_threshold,
-                        "occupations": request.occupations_threshold or _extractor.occupation_threshold
-                    }
-                }
-            }
-            
-        except Exception as e:
-            raise HTTPException(status_code=500, detail=f"Error extracting rich data: {str(e)}")
+    # Legacy extraction/search endpoints removed (use intelligent endpoints instead)
     
-    @app.post("/extract-basic", tags=["Extraction"])
-    async def extract_basic(request: ExtractRequest):
-        try:
-            skill_matches = _extractor.extract_skills(
-                request.text,
-                threshold=request.skills_threshold,
-                max_results=request.max_results
-            )
-            
-            occupation_matches = _extractor.extract_occupations(
-                request.text,
-                threshold=request.occupations_threshold,
-                max_results=request.max_results
-            )
-            
-            return {
-                "skills": [skill['name'] for skill in skill_matches],
-                "occupations": [occ['name'] for occ in occupation_matches]
-            }
-            
-        except Exception as e:
-            raise HTTPException(status_code=500, detail=f"Error in basic extraction: {str(e)}")
+    # Legacy extraction/search endpoints removed (use intelligent endpoints instead)
     
-    @app.post("/extract-pdf-skills", tags=["PDF Extraction"])
-    async def extract_pdf_skills(
+    @app.post("/analyze-cv-intelligent", tags=["Intelligent Analysis"])
+    async def analyze_cv_intelligent(
         pdf: UploadFile = File(...),
+        detailed_analysis: bool = Form(True),
         skills_threshold: float = Form(0.6),
         occupations_threshold: float = Form(0.55),
-        max_results: int = Form(10),
-        rich_data: bool = Form(False)
+        max_results: int = Form(30)
     ):
+        """Intelligent CV analysis using BGE-M3 + Gemma3 4B hybrid system with prefilter"""
+        
         if not pdf.filename.endswith('.pdf'):
             raise HTTPException(status_code=400, detail="File must be a PDF")
         
         try:
-            import fitz
-            
             pdf_content = await pdf.read()
-            pdf_document = fitz.open(stream=pdf_content, filetype="pdf")
+            analysis_result = _intelligent_analyzer.analyze_pdf_cv_prefiltered(
+                pdf_content,
+                skills_threshold=skills_threshold,
+                occupations_threshold=occupations_threshold,
+                max_results=max_results
+            )
             
-            try:
-                extracted_text = ""
-                page_count = pdf_document.page_count  # Store before closing
-                for page_num in range(page_count):
-                    page = pdf_document[page_num]
-                    extracted_text += page.get_text() + "\n"
-                cleaned_text = extracted_text.strip()
-            finally:
-                pdf_document.close()
+            analysis_result["file_info"] = {
+                "filename": pdf.filename,
+                "size_bytes": len(pdf_content),
+                "analysis_type": "intelligent_hybrid_prefilter"
+            }
             
-            if not cleaned_text:
-                raise HTTPException(status_code=400, detail="PDF contains no extractable text")
+            return analysis_result
             
-            if rich_data:
-                # Rich extraction
-                skill_matches = _extractor.extract_skills(cleaned_text, threshold=skills_threshold, max_results=max_results)
-                occupation_matches = _extractor.extract_occupations(cleaned_text, threshold=occupations_threshold, max_results=max_results)
-                
-                rich_skills = []
-                for skill_match in skill_matches:
-                    try:
-                        rich_skill = _extractor.get_rich_skill_data(skill_match['uri'], similarity=skill_match['similarity'])
-                        rich_skills.append(rich_skill)
-                    except ValueError:
-                        continue
-                
-                rich_occupations = []
-                for occupation_match in occupation_matches:
-                    try:
-                        rich_occupation = _extractor.get_rich_occupation_data(occupation_match['uri'], similarity=occupation_match['similarity'])
-                        rich_occupations.append(rich_occupation)
-                    except ValueError:
-                        continue
-                
-                return {
-                    "skills": rich_skills,
-                    "occupations": rich_occupations,
-                    "metadata": {
-                        "filename": pdf.filename,
-                        "pages": page_count,
-                        "text_length": len(cleaned_text),
-                        "totalSkillsFound": len(rich_skills),
-                        "totalOccupationsFound": len(rich_occupations),
-                        "rich_data": True,
-                        "extracted_text": cleaned_text
-                    }
-                }
-            else:
-                # Basic extraction
-                skill_matches = _extractor.extract_skills(cleaned_text, threshold=skills_threshold, max_results=max_results)
-                occupation_matches = _extractor.extract_occupations(cleaned_text, threshold=occupations_threshold, max_results=max_results)
-                
-                return {
-                    "skills": [skill['name'] for skill in skill_matches],
-                    "occupations": [occ['name'] for occ in occupation_matches],
-                    "source_info": {
-                        "filename": pdf.filename,
-                        "pages": page_count,
-                        "text_length": len(cleaned_text),
-                        "extracted_text": cleaned_text
-                    }
-                }
-        
         except ImportError:
-            raise HTTPException(status_code=500, detail="PyMuPDF not installed")
+            raise HTTPException(status_code=500, detail="PyMuPDF not installed for PDF processing")
         except Exception as e:
-            raise HTTPException(status_code=500, detail=f"PDF processing failed: {str(e)}")
+            raise HTTPException(status_code=500, detail=f"Intelligent analysis failed: {str(e)}")
     
-    @app.get("/search/skills", tags=["Search"])
-    async def search_skills(query: str, limit: int = 10):
+    @app.post("/analyze-text-intelligent", tags=["Intelligent Analysis"]) 
+    async def analyze_text_intelligent(request: ExtractRequest):
+        """Intelligent text analysis using BGE-M3 + Gemma3 4B hybrid system"""
+        
         try:
-            results = []
-            query_lower = query.lower()
+            # Perform intelligent analysis
+            analysis_result = _intelligent_analyzer.analyze_text_cv_prefiltered(
+                request.text,
+                metadata={"source": "text_prefiltered_request", "text_length": len(request.text)},
+                skills_threshold=request.skills_threshold,
+                occupations_threshold=request.occupations_threshold,
+                max_results=request.max_results
+            )
             
-            for uri, skill_data in _extractor._skill_data.items():
-                if (query_lower in skill_data['name'].lower() or
-                    any(query_lower in alt.lower() for alt in skill_data['alternatives'])):
-                    results.append({
-                        'name': skill_data['name'],
-                        'uri': uri,
-                        'categories': _extractor._skill_categories.get(uri, []),
-                        'type': skill_data['type']
-                    })
-                    
-                    if len(results) >= limit:
-                        break
-            
-            return {"results": results, "total": len(results)}
+            return analysis_result
             
         except Exception as e:
-            raise HTTPException(status_code=500, detail=f"Error searching skills: {str(e)}")
-    
-    @app.get("/search/occupations", tags=["Search"])
-    async def search_occupations(query: str, limit: int = 10):
+            raise HTTPException(status_code=500, detail=f"Intelligent text analysis failed: {str(e)}")
+
+    @app.post("/analyze-text-intelligent-prefilter", tags=["Intelligent Analysis"])
+    async def analyze_text_intelligent_prefilter(request: ExtractRequest):
+        """Gemma-first filtering followed by intelligent analysis"""
         try:
-            results = []
-            query_lower = query.lower()
-            
-            for uri, occ_data in _extractor._occupation_data.items():
-                if (query_lower in occ_data['name'].lower() or
-                    any(query_lower in alt.lower() for alt in occ_data['alternatives'])):
-                    results.append({
-                        'name': occ_data['name'],
-                        'uri': uri,
-                        'iscoGroup': occ_data['iscoGroup'],
-                        'description': occ_data['description'][:200] + '...' if len(occ_data['description']) > 200 else occ_data['description']
-                    })
-                    
-                    if len(results) >= limit:
-                        break
-            
-            return {"results": results, "total": len(results)}
-            
+            analysis_result = _intelligent_analyzer.analyze_text_cv_prefiltered(request.text)
+            return analysis_result
         except Exception as e:
-            raise HTTPException(status_code=500, detail=f"Error searching occupations: {str(e)}")
+            raise HTTPException(status_code=500, detail=f"Prefiltered intelligent analysis failed: {str(e)}")
     
-    print(f"✅ Simple API initialized with {len(app.routes)} routes")
+    print(f"✅ Intelligent API initialized with {len(app.routes)} routes")
     return app
