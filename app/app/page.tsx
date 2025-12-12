@@ -1,17 +1,21 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/components/ui/accordion";
 import { Slider } from "@/components/ui/slider";
 import { escoApi } from "@/lib/api";
 import type { IntelligentAnalysisResults, GemmaSkillContext } from "@/lib/api";
+import { useAnalysisStore } from "@/lib/analysisStore";
+import { JobSearchSection } from "@/components/JobSearchSection";
 
 export default function Home() {
   const [file, setFile] = useState<File | null>(null);
   const [loading, setLoading] = useState(false);
-  const [results, setResults] = useState<IntelligentAnalysisResults | null>(null);
+  const results = useAnalysisStore((state) => state.results);
+  const setResults = useAnalysisStore((state) => state.setResults);
+  const clearAllData = useAnalysisStore((state) => state.clearAllData);
   const [error, setError] = useState<string>("");
   const [skillThreshold, setSkillThreshold] = useState([0.68]);
   const [occupationThreshold, setOccupationThreshold] = useState([0.65]);
@@ -37,7 +41,9 @@ export default function Home() {
     insights: data.insights,
     intelligent_recommendations: data.intelligent_recommendations ?? [],
     cv_sections: data.cv_sections,
-    metadata: data.cv_metadata ?? data.file_info ?? data.metadata ?? {}
+    metadata: data.cv_metadata ?? data.file_info ?? data.metadata ?? {},
+    location_hint: data.location_hint,
+    city_suggestions: data.city_suggestions
   });
 
   const analyzePdf = async (selectedFile: File): Promise<IntelligentAnalysisResults> => {
@@ -76,6 +82,11 @@ export default function Home() {
       careerOpportunities: data.career_opportunities?.length ?? 0
     });
 
+    // Debug location extraction
+    console.log("Location Analysis from Gemma:");
+    console.log("location_hint:", data.location_hint);
+    console.log("city_suggestions:", data.city_suggestions);
+
     return normalizeResponse(data);
   };
 
@@ -110,6 +121,12 @@ export default function Home() {
     }
   };
 
+  useEffect(() => {
+    if (results?.location_hint) {
+      console.log("Detected location:", results.location_hint);
+    }
+  }, [results?.location_hint]);
+
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="max-w-6xl mx-auto p-8">
@@ -134,10 +151,24 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="flex justify-end">
+            <div className="flex justify-between">
+              {results && (
+                <Button
+                  variant="outline"
+                  onClick={() => {
+                    clearAllData()
+                    setFile(null)
+                    setError("")
+                  }}
+                  className="text-red-600 border-red-300 hover:bg-red-50"
+                >
+                  Clear Analysis
+                </Button>
+              )}
               <Button
                 onClick={handleSubmit}
                 disabled={loading || !file}
+                className="ml-auto"
               >
                 {loading ? "Analyzing..." : "Analyze"}
               </Button>
@@ -197,8 +228,8 @@ export default function Home() {
         {results?.filter_summary && (
           <div className="bg-white rounded-lg shadow p-6 mb-8">
             <h2 className="text-xl font-semibold text-gray-900 mb-4">Prefilter Summary</h2>
-            <Accordion className="divide-y">
-              <AccordionItem>
+            <Accordion type="single" collapsible className="divide-y">
+              <AccordionItem value="kept-sentences">
                 <AccordionTrigger className="bg-green-50 text-green-900">
                   Professional sentences kept ({results.filter_summary.kept_sentences?.length || 0})
                 </AccordionTrigger>
@@ -212,7 +243,7 @@ export default function Home() {
                   </div>
                 </AccordionContent>
               </AccordionItem>
-              <AccordionItem>
+              <AccordionItem value="dropped-sentences">
                 <AccordionTrigger className="bg-red-50 text-red-900">
                   Dropped as personal/hobby ({results.filter_summary.dropped_sentences?.length || 0})
                 </AccordionTrigger>
@@ -235,6 +266,19 @@ export default function Home() {
               <p className="text-xs text-gray-500 mt-4">
                 {results.filter_summary.notes}
               </p>
+            )}
+          </div>
+        )}
+
+        {results?.location_hint?.city && (
+          <div className="bg-white rounded-lg shadow p-6 mb-8">
+            <h2 className="text-xl font-semibold text-gray-900 mb-2">Detected Location</h2>
+            <p className="text-sm text-gray-700">
+              {results.location_hint.city}
+              {results.location_hint.country ? `, ${results.location_hint.country}` : ""}
+            </p>
+            {results.location_hint.evidence && (
+              <p className="text-xs text-gray-500 mt-2">Hinweis: {results.location_hint.evidence}</p>
             )}
           </div>
         )}
@@ -538,6 +582,9 @@ export default function Home() {
                 </div>
               </div>
             )}
+            
+            {/* Job Search Integration */}
+            <JobSearchSection />
           </div>
         )}
       </div>

@@ -97,10 +97,31 @@ export interface CareerOpportunity {
 
 export interface CareerRoleInsight {
   role: string;
+  german_role?: string;
   why_it_fits: string;
   skills_to_highlight?: string[];
   gaps_to_address?: string[];
   recommended_actions?: string[];
+}
+
+export interface LocationHint {
+  city?: string;
+  country?: string;
+  confidence?: number;
+  evidence?: string;
+}
+
+export interface CitySuggestion {
+  city: string;
+  reason: string;
+}
+
+export interface CitySuggestions {
+  primary_city: string;
+  suggested_cities: CitySuggestion[];
+  detected_current: string;
+  confidence: number;
+  detection_reason?: string;
 }
 
 export interface IntelligentAnalysisResults {
@@ -117,6 +138,8 @@ export interface IntelligentAnalysisResults {
   career_role_insights?: CareerRoleInsight[];
   cv_sections?: Record<string, unknown>;
   metadata?: Record<string, unknown>;
+  location_hint?: LocationHint;
+  city_suggestions?: CitySuggestions;
 }
 
 export interface HealthCheckResponse {

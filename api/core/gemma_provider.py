@@ -453,7 +453,13 @@ JSON format:
             for cat, count in sorted(skill_categories.items(), key=lambda x: x[1], reverse=True):
                 category_lines.append(f"{cat}: {count}")
 
-        prompt = f"""You are an expert career advisor. Based on the candidate's skills and ESCO occupations they matched, propose 3 concise career directions.
+        prompt = f"""You are an expert career advisor. Based on the candidate's skills and ESCO occupations they matched, propose 3 REALISTIC, SINGLE-FOCUS career directions.
+
+IMPORTANT RULES:
+- Each role must be a SINGLE, real job title that exists in the job market
+- NO combined roles (avoid "&", "and", "/") - each recommendation should be ONE specific job
+- Use standard job titles that employers actually post (e.g., "Data Analyst", "Software Developer", "Marketing Manager")
+- Focus on the candidate's STRONGEST skill area for each recommendation
 
 Top skills:
 {chr(10).join(skill_lines)}
@@ -465,8 +471,8 @@ Skill categories:
 {chr(10).join(category_lines) if category_lines else "Not specified"}
 
 For each career direction provide:
-- role: short role name
-- why_it_fits: how the skills/occupations support it
+- role: single, realistic job title (e.g., "Data Analyst", NOT "Data Analyst & Business Consultant")
+- why_it_fits: how the skills/occupations support this SPECIFIC role
 - recommended_actions: list of concrete next steps (courses, projects, networking)
 - skills_to_leverage: key strengths to emphasize
 - skills_to_build: skills or experiences to acquire
@@ -545,8 +551,175 @@ Respond ONLY with JSON array of objects using this schema:
             fallback.append({
                 "role": job.get("name"),
                 "why_it_fits": f"Matches {len(job.get('matched_skills', []))} skills including "
-                               f"{', '.join(job.get('matched_skills', [])[:3])}.",
+                                f"{', '.join(job.get('matched_skills', [])[:3])}.",
                 "skills_to_highlight": job.get("matched_skills", [])[:5],
                 "gaps_to_address": job.get("missing_essential", [])[:5]
             })
         return fallback
+
+    def translate_role_to_german(self, english_role: str) -> str:
+        """Use Gemma to translate AI-generated job role to broader German job search terms"""
+        prompt = f"""Convert this job role to BROAD German job search terms that work well with the German Arbeitsagentur job API.
+
+CRITICAL RULES:
+- Use BROAD terms that return many results, not specific compounds
+- German job market uses broader categories than English
+- If English role has multiple parts (&, and, /), pick PRIMARY skill only  
+- Prefer common English terms or simple German categories over complex German compounds
+
+SUCCESSFUL PATTERNS:
+"Data Analyst" → "Analyst" (works great, returns 21+ jobs)
+"Machine Learning Engineer" → "Developer" (broad technical term)
+"Frontend Developer" → "Entwickler" (developer category) 
+"Data Scientist" → "Analyst" (data analysis category)
+"Software Engineer" → "Entwickler" (software development)
+"Technical Product Manager" → "Manager" (management category)
+"Research Scientist" → "Forscher" (research category)
+"DevOps Engineer" → "Administrator" (systems category)
+"UX Designer" → "Designer" (design category)
+"Business Analyst" → "Analyst" (analysis category)
+
+AVOID specific compounds like:
+❌ "Datenanalyst" (returns 0 jobs)
+❌ "Maschinenlernigeneur" (too specific)
+❌ "Forschungsspezialist" (too narrow)
+
+Job role to translate: "{english_role}"
+
+Broad German search term:"""
+
+        response = self._call_gemma(prompt)
+        # Extract just the German translation, clean up any extra text
+        german_role = response.strip()
+        
+        # Remove any quotes or extra explanation
+        if german_role.startswith('"') and german_role.endswith('"'):
+            german_role = german_role[1:-1]
+        
+        # Take only the first line if there's multiple lines
+        german_role = german_role.split('\n')[0].strip()
+        
+        # Fallback to original if translation seems empty or invalid
+        if not german_role or len(german_role) < 3:
+            return english_role
+            
+        return german_role
+
+    def suggest_job_cities(self, cv_text: str, skills: List[str], career_roles: List[str]) -> Dict[str, Any]:
+        """Use Gemma to suggest 3 relevant German cities for job search based on CV analysis"""
+        snippet = cv_text[:1500]
+        top_skills = skills[:5] if skills else []
+        top_roles = career_roles[:3] if career_roles else []
+        
+        prompt = f"""Analyze this CV to find the person's current city with confidence prioritization.
+
+CV Text:
+{snippet}
+
+PRIORITY ORDER for detecting current city:
+1. HIGHEST PRIORITY - Personal address mentioned in CV (city name in contact info/address)
+2. HIGH PRIORITY - Most recent work experience with "present", "current", or latest end date + city
+3. MEDIUM PRIORITY - Recent education institution + city (if work experience is old)
+4. LOW PRIORITY - Any other city mentions
+
+TASK: Scan the CV text for ANY German city names and determine WHY each city was mentioned. Then pick the most likely current city based on the priority order above.
+
+German cities to detect: Berlin, München, Hamburg, Köln, Frankfurt, Stuttgart, Dresden, Leipzig, Hannover, Dortmund, Essen, Bremen, Nürnberg, Mannheim, Karlsruhe, Düsseldorf, Bonn, Wuppertal, Bielefeld, Münster
+
+For each city found, analyze:
+- Context: Why was this city mentioned? (address, work, education, etc.)
+- Recency: How recent is the connection? (current, 2023, 2020, etc.)
+- Confidence: How sure are you this is their current location?
+
+After analysis, provide the best current city guess and 3 career opportunity cities.
+
+Respond ONLY with JSON:
+{{
+  "detected_current": "most likely current city based on priority order, or null if no clear indication",
+  "confidence": 0.0-1.0,
+  "detection_reason": "brief explanation of why this city was chosen",
+  "primary_city": "best city for career opportunities",
+  "suggested_cities": [
+    {{"city": "City1", "reason": "career opportunity reason"}},
+    {{"city": "City2", "reason": "career opportunity reason"}}, 
+    {{"city": "City3", "reason": "career opportunity reason"}}
+  ]
+}}"""
+
+        response = self._call_gemma(prompt)
+        try:
+            parsed = json.loads(self._extract_json_object(response))
+            return {
+                "primary_city": (parsed.get("primary_city") or "").strip(),
+                "suggested_cities": parsed.get("suggested_cities", []),
+                "detected_current": (parsed.get("detected_current") or "").strip(),
+                "confidence": parsed.get("confidence", 0.5),
+                "detection_reason": (parsed.get("detection_reason") or "").strip()
+            }
+        except Exception:
+            # Fallback: suggest major hubs based on skills
+            fallback_cities = []
+            skill_text = ' '.join(top_skills + top_roles).lower()
+            
+            if any(word in skill_text for word in ['software', 'tech', 'digital', 'ai', 'data']):
+                fallback_cities.append({"city": "Berlin", "reason": "Major tech hub with many digital/software opportunities"})
+                
+            if any(word in skill_text for word in ['engineering', 'automotive', 'mechanical', 'manufacturing']):
+                fallback_cities.append({"city": "München", "reason": "Engineering and automotive industry center"})
+                
+            if any(word in skill_text for word in ['finance', 'logistics', 'business', 'consulting']):
+                fallback_cities.append({"city": "Frankfurt", "reason": "Financial and business services hub"})
+                
+            # Fill to 3 cities if needed
+            default_cities = [
+                {"city": "Hamburg", "reason": "Major business center with diverse opportunities"},
+                {"city": "Köln", "reason": "Media and business hub"},
+                {"city": "Stuttgart", "reason": "Technology and automotive center"}
+            ]
+            
+            while len(fallback_cities) < 3:
+                for city in default_cities:
+                    if not any(c["city"] == city["city"] for c in fallback_cities):
+                        fallback_cities.append(city)
+                        if len(fallback_cities) >= 3:
+                            break
+                break
+                            
+            return {
+                "primary_city": fallback_cities[0]["city"] if fallback_cities else "Berlin",
+                "suggested_cities": fallback_cities[:3],
+                "detected_current": "",
+                "confidence": 0.3
+            }
+
+    def infer_location(self, cv_text: str) -> Dict[str, Any]:
+        """Use Gemma to infer likely city/country from CV text"""
+        snippet = cv_text[:1500]
+        prompt = f"""Identify the most likely city (and country, if mentioned) associated with this CV.
+Respond ONLY with JSON: {{"city":"...","country":"...","confidence":0-1,"evidence":"short quote"}}.
+If no location is mentioned, set city to an empty string.
+
+CV Text:
+{snippet}
+"""
+
+        response = self._call_gemma(prompt)
+        try:
+            parsed = json.loads(self._extract_json_object(response))
+            return {
+                "city": (parsed.get("city") or "").strip(),
+                "country": (parsed.get("country") or "").strip(),
+                "confidence": parsed.get("confidence"),
+                "evidence": parsed.get("evidence", "")
+            }
+        except Exception:
+            import re
+            match = re.search(r"\b(Berlin|Leipzig|München|Hamburg|Köln|Frankfurt|Stuttgart|Dresden|Bonn|Hannover)\b", cv_text, re.IGNORECASE)
+            if match:
+                return {
+                    "city": match.group(0),
+                    "country": "Deutschland",
+                    "confidence": 0.4,
+                    "evidence": "heuristic match"
+                }
+            return {}

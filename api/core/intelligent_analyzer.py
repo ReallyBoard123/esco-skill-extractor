@@ -219,13 +219,28 @@ class IntelligentCVAnalyzer:
             skill_gap_analysis.get("current_skill_categories", {})
         )
         
+        # Add German translations for job search
+        for rec in intelligent_recommendations:
+            if rec.get("role"):
+                rec["german_role"] = self.gemma_provider.translate_role_to_german(rec["role"])
+        
         analysis_steps["step6_recommendations"] = time.time() - step_start
-        print(f"✅ Generated {len(intelligent_recommendations)} recommendations")
+        print(f"✅ Generated {len(intelligent_recommendations)} recommendations with German translations")
         
         # Compile comprehensive results
         total_time = sum(analysis_steps.values())
         
         role_fit_insights = self.gemma_provider.generate_role_fit_overview(job_match_dicts)
+        
+        # Add German translations to role fit insights
+        for insight in role_fit_insights:
+            if insight.get("role"):
+                insight["german_role"] = self.gemma_provider.translate_role_to_german(insight["role"])
+                
+        # Generate city suggestions based on CV analysis
+        skill_names = [skill['name'] for skill in extracted_skills[:10]]
+        role_names = [rec.get('role', '') for rec in intelligent_recommendations[:3]]
+        city_suggestions = self.gemma_provider.suggest_job_cities(cv_text, skill_names, role_names)
 
         return {
             "analysis_summary": {
@@ -295,6 +310,9 @@ class IntelligentCVAnalyzer:
             # AI recommendations (Gemma3 4B)
             "intelligent_recommendations": intelligent_recommendations,
             
+            # City suggestions for job search
+            "city_suggestions": city_suggestions,
+            
             # Summary insights
             "insights": {
                 "strongest_skill_categories": self._get_top_categories(skill_matches),
@@ -318,6 +336,7 @@ class IntelligentCVAnalyzer:
         filtered_text = filter_result.get("filtered_text") or cv_text
         kept = filter_result.get("kept_sentences", [])
         dropped = filter_result.get("dropped_sentences", [])
+        location_hint = self.gemma_provider.infer_location(cv_text)
 
         # Prepare metadata noting filtering
         updated_metadata = dict(metadata or {})
@@ -343,6 +362,8 @@ class IntelligentCVAnalyzer:
             "evaluated_sentences": filter_result.get("evaluated_sentences"),
             "filtered_text_preview": filtered_text[:300]
         }
+        if location_hint:
+            result["location_hint"] = location_hint
         return result
     
     def _determine_skill_section(self, skill_name: str, cv_sections: Dict) -> str:
